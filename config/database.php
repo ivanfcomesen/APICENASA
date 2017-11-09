@@ -37,7 +37,7 @@ return [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
-        ],
+        ],              
 
         'mysql' => [
             'driver' => 'mysql',
@@ -66,17 +66,19 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-
+                
         'sqlsrv' => [
-            'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
+            'driver'   => 'sqlsrv',
+            'host'     => env('DB_HOST', 'USUARIO'),
+            'database' => env('DB_DATABASE', 'Subasta'),
+            'username' => env('DB_USERNAME', 'sa'),
             'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'odbc' => true, // Tell the driver to use ODBC connection
+            'odbc_datasource_name' => 'ODBC_DATASOURCE_NAME',  // Only the name, don't include 'odbc:' prefix
         ],
+        
 
     ],
 
