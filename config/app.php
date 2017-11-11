@@ -176,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        TCK\Odbc\OdbcServiceProvider::class
 
     ],
 
@@ -189,6 +190,13 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
+    
+    'odbc'   => [
+	'grammar' => [
+		'query' => Illuminate\Database\Query\Grammars\SqlServerGrammar::class,
+		'schema' => Illuminate\Database\Schema\Grammars\SqlServerGrammar::class,
+	],
+],
 
     'aliases' => [
 

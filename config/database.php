@@ -69,15 +69,23 @@ return [
                 
         'sqlsrv' => [
             'driver'   => 'sqlsrv',
-            'host'     => env('DB_HOST', 'USUARIO'),
-            'database' => env('DB_DATABASE', 'Subasta'),
-            'username' => env('DB_USERNAME', 'sa'),
-            'password' => env('DB_PASSWORD', ''),
+            'host'     => env('DB_HOST2', 'USUARIO'),
+            'database' => env('DB_DATABASE2', 'Subasta'),
+            'username' => env('DB_USERNAME2', 'sa'),
+            'password' => env('DB_PASSWORD2', ''),
             'charset'  => 'utf8',
             'prefix'   => '',
             'odbc' => true, // Tell the driver to use ODBC connection
-            'odbc_datasource_name' => 'ODBC_DATASOURCE_NAME',  // Only the name, don't include 'odbc:' prefix
+            'USUARIO' => 'USUARIO',  // Only the name, don't include 'odbc:' prefix
         ],
+        'odbc'   => [
+	'driver'   => 'odbc',
+	'dsn'      =>  'odbc:DRIVER={SQL Server};SERVER=USUARIO;DATABASE=Subasta;UID=sa;PWD=', //
+	'host'     => 'USUARIO',
+	'database' => 'Subasta',
+	'username' => 'sa',
+	'password' => '',
+],
         
 
     ],
