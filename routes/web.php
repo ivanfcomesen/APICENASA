@@ -12,7 +12,7 @@
 */
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use GuzzleHttp\Client;
+
 
 Route::get('/', function () {
     
@@ -27,23 +27,11 @@ Auth::routes();
 
 
 Route::get('/testConexion', 'HeadguiaController@maxId')->name('testConexion');
+Route::get('/test', 'HeadguiaController@insert')->name('test');
 
 
 Route::get('/testeandop', function () {
-    
-    
-   // $client = new Client([
-        // Base URI is used with relative requests
-   //     'base_uri' => 'http://test-tgrupal.addax.cc',
-        
-        // You can set any number of default request options.
-     //   'timeout'  => 5.0,
-   // ]);
-    
-  //  $response = $client->request('GET', '/popupnocss.php?module=Users&func=loginfromcurlmd5&email=rgonzales@hotmail.com&password=rgonzales&app=subasta');
-    
-   // $posts = $response->getBody()->getContents();
-    
+      
     return view('posts.index');
 });
 

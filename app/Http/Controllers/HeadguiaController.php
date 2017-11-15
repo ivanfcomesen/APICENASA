@@ -27,7 +27,7 @@ class HeadguiaController extends Controller {
         return $codigo->getBody();
     }
 
-    public function verificaExiste($talonario,$guia,$usuario,$subasta) {
+    public function verificaExiste($talonario, $guia, $usuario, $subasta) {
 
         $client = new Client([
             'base_uri' => 'http://test-tgrupal.addax.cc',
@@ -35,31 +35,25 @@ class HeadguiaController extends Controller {
         ]);
         $guia = $client->request('GET', '/zf_Trazabilidad/Popup/verificarexistenciadeguia/' . 'talonario' .
                 '$numero' . 'usuario' . 'subasta' . 'key/S2V5IHRlbXBvcmFsIHBhcmEgc3ViYXN0YXMu');
-        
-        
 
         return '';
     }
 
     public function maxId() {
-        //Perfecto
         $conn = DB::connection("odbc");
         $sql = "Select max(id) as topId from Conse_Boleta";
         $resultado = $conn->selectOne($sql);
-        //("0000000" . $resultado->topId);        
-        return view('posts.productor');
+        $num = $resultado->topId + 1;
+        return ("0000000" . $num);
     }
 
     public function insert() {
-        //Perfecto
+
         $conn = DB::connection("odbc");
-        $sql = "INSER INTO Conse_Boleta (INSERT INTO Conse_Boleta (Consecutivo) VALUES('00000001')";
-
-        // $conn->insert($sql, array(''));
-        //  $resultado = $conn->insert($sql);
-        //  var_dump($resultado);
-
-        return view('posts.productor');
+        $sql = "INSERT INTO Conse_Boleta (Consecutivo)" . "VALUES('" . $this->maxId() . "')";
+        //echo $sql;
+        $conn->insert($sql);
+        //    return view('posts.productor');
     }
 
     public function update() {

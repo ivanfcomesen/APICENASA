@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                     APICENASA
+                     APISENASA
                     </a>
                 </div>
 
