@@ -21,17 +21,11 @@ class HeadguiaController extends Controller {
     public function maxId() {
         //Perfecto
         $conn = DB::connection("odbc");
-        $sql = "Select max(id) from Conse_Boleta";        
-        $arrayResp = $conn->select($sql);
-
+        $sql = "Select max(id) as topConsecutivo from Conse_Boleta";        
+        $resultado = $conn->select($sql);
+         var_dump($resultado);
         
-        
-        //$resultado = $conn->select($sql);
-        
-        var_dump($sql);
-        var_dump($arrayResp);
-
-        return view('posts.productor');
+        //return view('posts.productor');
     }
 
     public function insert() {

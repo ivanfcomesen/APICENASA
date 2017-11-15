@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 
-Route::get('/testConexion', 'HeadguiaController@index')->name('testConexion');
+Route::get('/testConexion', 'HeadguiaController@maxId')->name('testConexion');
 
 
 Route::get('/testeandop', function () {
