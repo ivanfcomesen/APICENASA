@@ -19,15 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
 
-Route::get('/testConexion', 'HeadguiaController@maxId')->name('testConexion');
-Route::get('/test', 'HeadguiaController@insert')->name('test');
+Route::get('/testindex', 'HeadguiaController@index')->name('testIndex');
 
 
 Route::get('/testeandop', function () {
