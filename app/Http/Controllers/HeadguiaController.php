@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\EndPointsSENASA\Cliente;
-use GuzzleHttp\Client;
 
 class HeadguiaController extends Controller {
 
@@ -17,10 +16,14 @@ class HeadguiaController extends Controller {
 
     public function index() {
 
-       // $login = $this->cliente->login();
-      $code = $this->cliente->codeEstablishment();
-        //  dd($codigo->getBody()->getContents());
-        return $code;
+         $login = $this->cliente->login();
+         
+         if($login['login_result'] == true){
+             $code = $this->cliente->codeEstablishment();
+             dd($code);
+         }
+         
+     //   return $code;
     }
 
     public function maxId() {

@@ -41,8 +41,7 @@ class Cliente {
         $codigo = $this->cliente->request('GET', '/zf_Trazabilidad/Popup/obtenercodigoestablecimientoautorizado/'
                 . 'key/' . $this->cliente->getConfig()['Key']);
 
-        $probando = $this->remove_utf8_bom($codigo->getBody()->getContents());
-//        echo $probando;     
+        $probando = $this->remove_utf8_bom($codigo->getBody()->getContents());   
 
         return json_decode($probando, true);
     }
