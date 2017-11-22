@@ -4,36 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\EndPointsSENASA\Cliente;
 use GuzzleHttp\Client;
-use App\EndPointsSENASA;
 
 class HeadguiaController extends Controller {
 
     protected $cliente;
 
-    public function __construct(EndPointsSENASA\Cliente $cliente) {
-
+    public function __construct(Cliente $cliente) {
         $this->cliente = $cliente;
     }
 
     public function index() {
 
-        $data = $this->cliente->login();
-
-        return $data;
-        //if ((json_decode($login->getBody(), true)['login_result']) == true) { 
-    }
-
-
-    public function verificaExiste($talonario, $guia, $usuario, $subasta) {
-
-        $client = new Client([
-            'base_uri' => 'http://test-tgrupal.addax.cc',
-            'timeout' => 5.0,
-        ]);
-        $guia = $client->request('GET', '/zf_Trazabilidad/Popup/verificarexistenciadeguia/' . 'talonario' .
-                '$numero' . 'usuario' . 'subasta' . 'key/S2V5IHRlbXBvcmFsIHBhcmEgc3ViYXN0YXMu');
-        return '';
+       // $login = $this->cliente->login();
+      $code = $this->cliente->codeEstablishment();
+        //  dd($codigo->getBody()->getContents());
+        return $code;
     }
 
     public function maxId() {
