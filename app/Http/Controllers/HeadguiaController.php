@@ -15,15 +15,21 @@ class HeadguiaController extends Controller {
     }
 
     public function index() {
-
-         $login = $this->cliente->login();
+                                    
+         // if ($login['login_result'] == true) {
+          $data = $this->cliente->codeEstablishment();
+          
+          $respuesta =  json_encode($data);
+       // dd( $data);
          
-         if($login['login_result'] == true){
-             $code = $this->cliente->codeEstablishment();
-             dd($code);
-         }
-         
-     //   return $code;
+        //  print_r($code['resultado']);
+        //$name = $this->cliente->nameEstablishment($code); 
+    
+          
+          //  } //else {
+        // return "Problemas con el login";
+        // }
+           return view('posts.productor')->with('respuesta', $respuesta);
     }
 
     public function maxId() {

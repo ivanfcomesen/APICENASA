@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
+
 Route::get('/', function () {
     
     return view('welcome');
@@ -21,15 +22,13 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/productor', 'HeadguiaController@index');
+
 Auth::routes();
-
-
-Route::get('/testindex', 'HeadguiaController@index')->name('testIndex');
-
 
 Route::get('/testeandop', function () {
       
-    return view('posts.index');
+    return view('posts.productor');
 });
 
 

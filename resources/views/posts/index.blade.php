@@ -1,4 +1,4 @@
- @extends('layouts.app') @section('content')
+ @extends('layouts.app')
 <div class="container">
 	<div class="col-md-5">
 		<div class="panel panel-default">

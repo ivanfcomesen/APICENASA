@@ -19,8 +19,12 @@ class Cliente {
 
     public function remove_utf8_bom($text) {
         $bom = pack('H*', 'EFBBBF');
-        $text = preg_replace("/^$bom/", '', $text);
+        $text = preg_replace("/^$bom/", '', $text);      
         return $text;
+    }
+
+    public function getPeticion($string) {
+        return $this->cliente->request('GET', $string);
     }
 
     public function login() {
@@ -28,37 +32,37 @@ class Cliente {
         $user = "rgonzales@hotmail.com";
         $pass = "rgonzales";
 
-        $login = $this->cliente->request('GET', '/popupnocss.php?module=Users&func=loginfromcurlmd5&email='
+        $login = $this->getPeticion('/popupnocss.php?module=Users&func=loginfromcurlmd5&email='
                 . $user . '&password=' . $pass . '&app=subasta');
-
-        //  var_dump($login->getBody()->getContents());
 
         return json_decode($login->getBody(), true);
     }
 
     public function codeEstablishment() {
 
-        $codigo = $this->cliente->request('GET', '/zf_Trazabilidad/Popup/obtenercodigoestablecimientoautorizado/'
+        $codigo = $this->getPeticion('/zf_Trazabilidad/Popup/obtenercodigoestablecimientoautorizado/'
                 . 'key/' . $this->cliente->getConfig()['Key']);
-
-        $probando = $this->remove_utf8_bom($codigo->getBody()->getContents());   
-
-        return json_decode($probando, true);
+        $data = $this->remove_utf8_bom($codigo->getBody()->getContents());
+        
+        return json_decode($data, true);
     }
 
     public function nameEstablishment($codigo) {
 
-        $nombre = $this->cliente->request('GET', '/zf_Trazabilidad/Popup/obtenernombreestablecimiento/establecimiento/'
+        $name = $this->getPeticion('/zf_Trazabilidad/Popup/obtenernombreestablecimiento/establecimiento/'
                 . $codigo['codigo'] . '/key/' . $this->cliente->getConfig()['Key']);
-        return json_decode($nombre->getBody(), true);
+        $data = $this->remove_utf8_bom($name->getBody()->getContents());
+            
+        return json_decode($data, true);
     }
 
     public function verificaExiste($talonario, $guia, $usuario, $subasta) {
 
-        $existe = $this->cliente->request('GET', '/zf_Trazabilidad/Popup/verificarexistenciadeguia/talonario/' . $talonario .
+        $existe = $this->getPeticion('/zf_Trazabilidad/Popup/verificarexistenciadeguia/talonario/' . $talonario .
                 '/guia/' . $guia . '/usuario/' . $usuario . '/subasta/' . $subasta . '/key/' . $this->cliente->getConfig()['Key']);
 
-        return json_decode($existe->getBody(), true);
+        $data = $this->remove_utf8_bom($existe->getBody()->getContents());
+        return json_decode($data, true);
     }
 
 }
