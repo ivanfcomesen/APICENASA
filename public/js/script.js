@@ -1,23 +1,26 @@
+
 $(document).ready(function () {
     $('#alert').hide();
-    $(".btn-delete").click(function (e) {
+    $('#numeroGuia').change(function (e) {
         e.preventDefault();
-        if (!confirm("¿Está seguro de eliminar?")) {
-            return false;
-        }
-
-        var row = $(this).parents('tr');
-        var form = $(this).parents('form');
-        var url = form.attr('action');
-
-        $('#alert').show();
-        $.post(url, form.serialize(), function (result) {
-            row.fadeOut();
-            $('#products-total').html(result.total);
-            $('#alert').html(result.message);
-        }).fail(function () {
-            $('#alert').html("algo salió mal");
-        });
+        var guia = $('#numeroGuia').val();
+        var maxId =
+        var url = 'route('getTalonario', ['tienda' => $tienda, 'ruta' => $ruta])';
+        
+        $.post(url,guia,function(talonario){//json del controlador
+            $('#talonario').val(talonario.toString());
+           // $('talonario').html(talonario.toString());
+});
     });
 });
+//Set
+$('#txt_name').val(bla);
 
+
+ Route::get('/{tienda}/{ruta}', array('before' => 'validar_tienda', function($tienda, $ruta)
+{...}
+
+href="{{ Route ('/',['mitienda'],'/',['sesionproducto'])  }}"
+
+
+href="{{ route('miruta', ['tienda' => $tienda, 'ruta' => $ruta]) }}"

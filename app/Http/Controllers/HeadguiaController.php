@@ -71,7 +71,6 @@ class HeadguiaController extends Controller {
     }
     
     
-
     public function maxId() {
         $conn = DB::connection("odbc");
         $sql = "Select max(id) as topId from Conse_Boleta";
@@ -97,6 +96,5 @@ class HeadguiaController extends Controller {
         var_dump($resultado);
 
         return view('posts.productor');
-    }
-
+    }                 
 }

@@ -24,6 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/productor', 'HeadguiaController@index');
 
+Route::post('/talonario/{numeroGuia}', 'HeadguiaController@guiaExiste')->name('getTalonario');
+
 Auth::routes();
 
 Route::get('/testeandop', function () {
