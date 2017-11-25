@@ -15,22 +15,62 @@ class HeadguiaController extends Controller {
     }
 
     public function index() {
-                                    
-         // if ($login['login_result'] == true) {
-          $data = $this->cliente->codeEstablishment();
-          
-          $respuesta =  json_encode($data);
-       // dd( $data);
-         
-        //  print_r($code['resultado']);
-        //$name = $this->cliente->nameEstablishment($code); 
-    
-          
-          //  } //else {
-        // return "Problemas con el login";
-        // }
-           return view('posts.productor')->with('respuesta', $respuesta);
+
+       //  $login = $this->cliente->login();
+        // if ($login['login_result'] == true) {         
+        
+      //  $data = $this->cliente->codeEstablishment();
+    //    dd($data);
+        //     $code = $data['codigo']; //NO HAY DATA VALOR DE CODIGO NULL.
+        //  $name = $this->cliente->nameEstablishment($code);
+        //   $nameSubasta = $name['nombre'];
+         $nameSubasta = 'SUBASTA CAMARA DE GANADEROS PZ';
+        //  } else {
+        //      return "Problemas con el login";
+        //  }
+      //  print_r($data);
+        //  
+         return view('posts.productor')->with('nameSubasta', $nameSubasta);
     }
+
+    public function guiaExiste(Request $request, $codigoGuia) {              
+        
+        if($request->ajax()){
+            
+            $talonario = $this->maxId();
+            return $talonario;
+        }
+                
+      // $data = $this->cliente->guiaXCodigoDGuia($codigoGuia);
+     //  $talonario ="";
+        
+      //  if($data['resultado']==1){
+          //  $talonario = $data['codigo_talonario'];
+            //Pintar en el Campo Boleta el codigo de talonario 
+       // }else{//guia no existe
+          //   $talonario = $this->maxId();
+           //  $this->insert();
+            //sacar el maximo id he imprimirlo en el campo boleta
+       // }
+            return $talonario;
+    }
+    
+     public function destroyProduct(Request $request, $id)
+    {
+        if($request->ajax()){            
+            $product = \App\Product::find($id);
+            $product->delete();
+            $products_total = \App\Product::all()->count();
+            
+            return response()->json([
+                'total' => $products_total,
+                'message' =>  $product->name . ' fue eliminado correctamente'
+            ]);
+           
+        }
+    }
+    
+    
 
     public function maxId() {
         $conn = DB::connection("odbc");
