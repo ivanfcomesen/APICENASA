@@ -4,52 +4,38 @@
 
 <div class="container">
     <div id="alert" class="alert alert-info"></div>
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-heading">{{$data['nameSubata']}}</div>
-
+            <div class="panel-heading">{{$data['nameSubata']}}&emsp;&emsp;&emsp;&emsp;&emsp;{{$data['code']}}</div>
             <div class="panel-body">
-                <form class="form-horizontal">
-                    <label for="codEstablec" >Cod.Establecimiento:  </label>
-                    <input type="text"name="codEstablec" value="{{$data['code']}}"><br>
-                    <label for="codBarras">Cod. Barras Estbl:</label>
-                    <input type="text"name="codBarras" style="margin-left:7%;"><br>
-                    <label for="numSubasta">Numero Subasta:</label>
-                    <input type="text"name="numSubasta" style="margin-left:7%;"><br>
-                    <label for="cedResp">Cedula responsable:</label>
-                    <input type="text"name="cedResp" value=""><br><br>
-                    <label for="numGuia">Numero de guia:</label>
-                    <input type="text" name="numGuia" id="numeroGuia"style="margin-left:7%;"><br>
-                    <label for="bolet">Boleta sub. Numero:</label>
-                    <input type="text" name="bolet" id="talonario" readonly="true">
-                    <label for="estado">Estado</label>
-                    <input type="text" name="estado" id="estado" style="margin-left:27%;"><br>
-                    <label for="">Fecha Recepcion:</label>
-                    <input type="text" name="fname" id="estado" style="margin-left:5%;">
-                </form>
+
+                <label for="numGuia" style="width: 15%"># Guia:</label>
+                <input type="text" name="numGuia" id="numeroGuia">                     
+                <div style="text-align:right;">Boleta # 00000778</div>
 
             </div>
-        </div>        
+        </div>   
         <div class="panel panel-default">
             <div class="panel-heading">PRODUCTOR</div>
             <div class="panel-body">
-                <form class="form-horizontal" >
-                    <label for="code">Codigo:</label>
-                    <input type="text" name="code" style="margin-left:12%;"><br>
-                    <label for="name">Nombre:</label>
-                    <input type="text" name="name" style="margin-left:10%;"><br>
-                    <label for="finca">Finca Origen: </label>
+                <form >                   
+                    <label for="code" >Codigo:</label>
+                    <input type="text" name="code" ><br>    
+                    <label for="name" >Nombre:</label>
+                    <input type="text" name="name" ><br>
+                    <label for="finca">Finca: </label>
                     <input type="text" name="finca"><br>
-                    <label for="cedt">Cedula</label>
-                    <input type="text" name="cedt" id="cedProductor"  style="margin-left:12%;"><br>
-                    <button type="submit" class="btn btn-primary" style="margin-left:12%;" id="btnCedProductor">
-                        Consultar Cedula
+                    <label for="cedt">Cedula:</label>
+                    <input type="text" name="cedt" id="cedProductor" ><br><br><br>                    
+                    <button type="submit" class="btn btn-info" id="btnCedProductor">
+                        Buscar Ced.
                     </button>
-
                 </form>
+
             </div>
 
-        </div>
+        </div>       
+
         <div class="panel panel-default">
             <div class="panel-heading">MARCAS DE FIERROS</div>
             <br> <br>
@@ -60,19 +46,19 @@
             <div class="panel-body">
                 <form class="form-horizontal" >
                     <label for="dest"> Destino: </label>
-                    <input type="text" name="dest" style="margin-left:12%;"><br>
+                    <input type="text" name="dest"><br>
                     <label for="barras">Cod Barras:</label>
-                    <input type="text" name="barras"style="margin-left:5%;"><br>
+                    <input type="text" name="barras"><br>
                     <label for="codtbl">Cod Establ: </label>
-                    <input type="text" name="codtbl"style="margin-left:4%;"><br>
+                    <input type="text" name="codtbl"><br>
                     <label for="ced">Cedula</label>
-                    <input type="text" name="ced"style="margin-left:12%;"><br>
+                    <input type="text" name="ced"><br>
                     <label for="flete">Monto Flete:</label>                
-                    <input type="text" name="flete"style="margin-left:2%;"><br>
+                    <input type="text" name="flete"><br>
                     <label for="resp">Nombre Resp </label>
                     <input type="text" name="resp"><br>
                     <label for="placa">Placa:</label>
-                    <input type="text" name="placa" style="margin-left:15%;">
+                    <input type="text" name="placa">
                 </form>
             </div>
         </div>
