@@ -79,16 +79,23 @@ class HeadguiaController extends Controller {
     }
 
     public function consultCedProdDB(Request $request) {
-
         //. $request['cedula']
-
         $conn = DB::connection("odbc");
-        $sql = "SELECT Nom_Cliente AS nombreProductor, Cedula_Cliente AS cedulaProductor, Direccion AS direccion "
+        $sql = "SELECT Nom_Cliente AS nombreProductor,Cod_Cliente as subasta, Cedula_Cliente AS cedulaProductor, Direccion AS direccion "
                 . "FROM  Cliente WHERE (Cedula_Cliente = '" . "0601880814" . "')";
         $resultado = json_encode($conn->select($sql));
-        var_dump($resultado[0]['nombreProductor']);
 
-        return json_decode($resultado, true);
+        return json_decode($resultado, true); //($resultado[0]['nombreProductor']);
+    }
+
+    public function consultCedTranspDB(Request $request) {
+        //. $request['cedula']
+        $conn = DB::connection("odbc");
+        $sql = "SELECT Cod_Transport AS codigoTransportista, Nombre_Transport as nombreTransporte "
+                . "FROM  Transportista WHERE (Ced_Juridica = '" . "0601880815" . "')";
+        $resultado = json_encode($conn->select($sql));
+
+        return json_decode($resultado, true); //($resultado[0]['nombreProductor']);
     }
 
 }

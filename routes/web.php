@@ -27,6 +27,8 @@ Route::get('talonario', 'HeadguiaController@guiaExiste');
 
 Route::get('consultarCedulaProductor', 'HeadguiaController@consultCedProdDB');
 
+Route::get('consultarCedulaTransportista', 'HeadguiaController@consultCedTranspDB');
+
 Auth::routes();
 
 Route::get('/testeandop', function () {

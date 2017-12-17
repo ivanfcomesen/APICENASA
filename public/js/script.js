@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
     $('#alert').hide();
+    $('#nombreProductor').hide();
     $('#numeroGuia').change(function (e) {
         e.preventDefault();
         $('#alert').text('');
@@ -10,11 +11,10 @@ $(document).ready(function () {
             url: 'talonario',
             data: {guia: guia},
             type: "get",
-            // url: "/APICENASA/public/talonario/" + guia,                       
             //    dataType: "json",
             success: function (result) {
                 $('#alert').show().text('La guia no existe nuevo numero de boleta asignado');
-                $('#talonario').val(result);
+                $('#talonario').text("Boleta #" + result);
             }
         });
     });
@@ -27,11 +27,23 @@ $(document).ready(function () {
             data: {cedula: cedula},
             type: "get",
             success: function (result) {
-               // $('#talonario').val(result);
-                 $('#alert').show().text(result);
+                // $('#talonario').val(result);
+                $('#nombreProductor').show().text(result[0].nombreProductor);
+                $('#numeroSubasta').text('Subasta #' + result[0].subasta);
             }
         });
-
     });
-
+    $('#btnCedTransporte').click(function (e) {
+        e.preventDefault();
+        var cedula = $('#cedTransporte').val();
+        $.ajax({
+            url: 'consultarCedulaTransportista',
+            data: {cedula: cedula},
+            type: "get",
+            success: function (result) {
+                // $('#talonario').val(result);
+                $('#numeroSubastaTrnsp').text('Subasta #' + result[0].codigoTransportista);
+            }
+        });
+    });
 });
