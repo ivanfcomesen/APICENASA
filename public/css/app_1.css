@@ -1,7 +1,40 @@
-
-    label.encabeza {
-        float: right;
+/*
+.panel {
+    margin-bottom: 1px;
+    padding: 1px;
+}
+div.cuerpo {
+    margin-bottom: 6px;
+    label {
+        display: inline-block;
+        float: left;      
         width: 20%;
         text-align: left;
     }
-    
+}
+label.head {
+    float: right;
+    width: 30%;
+    text-align: right;
+}
+label.body {
+    display: inline-block;
+    float: left;      
+    width: 20%;
+    text-align: left;
+}
+
+input.cuerpo {
+    display: inline-block;
+    float: left;
+    width: 40%;
+}
+
+
+.alert {
+    width:59%;
+    padding: 5px;    
+    margin-bottom: 6px;
+    margin-left: 7px;
+}
+*/

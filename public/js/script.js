@@ -13,7 +13,7 @@ $(document).ready(function () {
             type: "get",
             //    dataType: "json",
             success: function (result) {
-                $('#alert').show().text('La guia no existe nuevo numero de boleta asignado');
+                $('#alert').show().text('Nuevo numero de boleta asignado');
                 $('#talonario').text("Boleta #" + result);
             }
         });

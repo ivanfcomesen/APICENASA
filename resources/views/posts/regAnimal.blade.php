@@ -1,5 +1,5 @@
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading">Registro de Animales</div>
     <div class="panel-body">
         <div class="form-group">

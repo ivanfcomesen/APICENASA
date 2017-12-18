@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="col-md-6">
-        0        <div class="panel panel-default">
+    <div class="col-md-6 ">
+        <div class="panel panel-primary" style="margin-bottom: 5px">
             @include('posts.headGuia') 
-            <div class="panel-heading">MARCAS DE FIERROS</div>
-            <br>
+
+            @include('posts.marcas')                     
             @include('posts.productor2') 
             @include('posts.transportista') 
         </div>
