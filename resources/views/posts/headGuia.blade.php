@@ -11,7 +11,7 @@
             <div class="form-group" style="margin-bottom: 5px"> 
                 <label for="numGuia" class="control-label col-sm-4"># Guia:</label>
                 <div class="col-sm-8">   
-                    <input type="text" name="cedProductor" id="cedProductor"class="form-control">   
+                    <input type="text" name="cedProductor" id="cedProductor"class="form-control" placeholder="Numero de guia.">   
                 </div>
             </div>   
         </form>
