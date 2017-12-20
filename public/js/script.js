@@ -7,28 +7,35 @@ $(document).ready(function () {
         $('#alert').text('');
         //    $('#talonario').val('');
         var guia = $('#numeroGuia').val();
+        if ($('#numeroGuia').val().length < 14) {
+            alert('Formato Invalido');
+        }
         $.ajax({
             url: 'talonario',
             data: {guia: guia},
             type: "get",
             //    dataType: "json",
             success: function (result) {
-                $('#alert').show().text('Nuevo numero de boleta asignado');
-                $('#talonario').text("Boleta #" + result);
+                $('#alert').show().text('Nuevo numero de boleta.');
+                $('#talonario').text(result.boleta);
+                $('#numeroGuia').val(result.guia);
             }
         });
     });
-
-    $('#btnCedProductor').click(function (e) {
+    $('#codigoProductor').change(function (e) {
         e.preventDefault();
-        var cedula = $('#cedProductor').val();
+        $('#alert').text('');
+        e.preventDefault();
+        var codigoProductor = $('#codigoProductor').val();
+        if ($('#codigoProductor').val().length < 22) {
+            alert('Formato Invalido');
+        }
         $.ajax({
-            url: 'consultarCedulaProductor',
-            data: {cedula: cedula},
+            url: 'formatoProductor',
+            data: {codigoProductor: codigoProductor},
             type: "get",
             success: function (result) {
-                // $('#talonario').val(result);
-                $('#nombreProductor').show().text(result[0].nombreProductor);
+                $('#codigoProductor').val(result);
                 $('#numeroSubasta').text('Subasta #' + result[0].subasta);
             }
         });

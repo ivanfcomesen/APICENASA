@@ -26,9 +26,12 @@ class HeadguiaController extends Controller {
 //   $nameSubasta = $name['nombre'];
 //  $nameSubasta = 'SUBASTA CAMARA DE GANADEROS PZ';
 // $code = '119-008157'; //NO HAY DATA VALOR DE CODIGO NULL.
+
+        $cantAnimales = $this->consulCantAnimales();
         $data = array(
             'code' => '119-008157',
-            'nameSubata' => 'SUBASTA CAMARA DE GANADEROS PZ'
+            'nameSubata' => 'SUBASTA CAMARA DE GANADEROS PZ',
+            'cantAnimales' => ($cantAnimales[0]['cantAnimales'])
         );
 //  } else {
 //      return "Problemas con el login";
@@ -49,8 +52,23 @@ class HeadguiaController extends Controller {
 //    $this->insert();
 //sacar el maximo id he imprimirlo en el campo boleta
 // }
-//   return $this->maxId();
-        return $this->maxId();
+        //strlen($this->formatGuia($request['guia'])
+        $data = array(
+            'guia' => $this->formatGuia($request['guia']),
+            'boleta' => $this->maxId());
+        return $data;
+    }
+
+    public function formatGuia($str) {
+        //$request['cedula']     
+        $respuesta = substr_replace($str, '-', 6, -7);
+        return $respuesta;
+    }
+
+    public function formatProductor(Request $request) {
+        //$request['cedula']            
+        $respuesta = substr_replace($request['codigoProductor'], '-', 6, -15);
+        return $respuesta;
     }
 
     public function maxId() {
@@ -94,8 +112,26 @@ class HeadguiaController extends Controller {
         $sql = "SELECT Cod_Transport AS codigoTransportista, Nombre_Transport as nombreTransporte "
                 . "FROM  Transportista WHERE (Ced_Juridica = '" . "0601880815" . "')";
         $resultado = json_encode($conn->select($sql));
-
         return json_decode($resultado, true); //($resultado[0]['nombreProductor']);
+    }
+
+    public function consulSubActual() {
+        //. $request['cedula']
+        $conn = DB::connection("odbc");
+        $sql = "SELECT Subas_Actual AS subastaActual "
+                . "FROM Compania WHERE (Ced_Juridica = '" . "3-002-071034" . "')";
+        $resultado = json_encode($conn->select($sql));
+        return json_decode($resultado, true); //($resultado[0]['subastaActual']);
+    }
+
+    public function consulCantAnimales() {
+        //. $request['cedula']         
+        $data = $this->consulSubActual();
+        $conn = DB::connection("odbc");
+        $sql = "SELECT Cant_Animales AS cantAnimales "
+                . "FROM Reg_Subasta WHERE (Cod_Subasta = '" . $data[0]['subastaActual'] . "')";
+        $resultado = json_encode($conn->select($sql));
+        return json_decode($resultado, true); //($resultado[0]['subastaActual']);
     }
 
 }

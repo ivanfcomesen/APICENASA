@@ -23,9 +23,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/productor', 'HeadguiaController@index');
 
+Route::get('formato', 'HeadguiaController@formatGuia');
+
+Route::get('formatoProductor', 'HeadguiaController@formatProductor');
+
 Route::get('talonario', 'HeadguiaController@guiaExiste');
 
 Route::get('consultarCedulaProductor', 'HeadguiaController@consultCedProdDB');
+
+Route::get('consultaCantidadAnimales', 'HeadguiaController@consulCantAnimales');
 
 Route::get('consultarCedulaTransportista', 'HeadguiaController@consultCedTranspDB');
 
@@ -35,5 +41,7 @@ Route::get('/testeandop', function () {
 
     return view('posts.productor');
 });
+
+
 
 

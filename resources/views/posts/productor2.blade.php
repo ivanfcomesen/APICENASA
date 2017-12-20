@@ -4,9 +4,9 @@
     <div class="panel-body" style="padding: 4px">
         <form class="form-horizontal col-sm-8">
             <div class="form-group" style="margin-bottom: 7px">
-                <label for="code" class="col-sm-4" >Codigo:</label>
+                <label for="codigoProductor" class="col-sm-4" >Codigo:</label>
                 <div class="col-sm-8">   
-                    <input type="text" name="code" class="form-control" placeholder="Codigo del productor.">   
+                    <input type="text" name="codigoProductor" id="codigoProductor" class="form-control" placeholder="Codigo del productor.">   
                 </div>
             </div>
             <div class="form-group" style="margin-bottom: 7px"> 

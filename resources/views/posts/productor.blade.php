@@ -4,7 +4,6 @@
     <div class="col-md-6 ">
         <div class="panel panel-primary" style="margin-bottom: 5px">
             @include('posts.headGuia') 
-
             @include('posts.marcas')                     
             @include('posts.productor2') 
             @include('posts.transportista') 
