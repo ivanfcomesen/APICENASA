@@ -20,7 +20,6 @@ $(document).ready(function () {
     });
     $('#codigoProductor').change(function (e) {
         e.preventDefault();
-        $('#alertProductor').hide();
         var codigoProductor = $('#codigoProductor').val();
 
         if (validaFormatoProductor(codigoProductor) === true) {
@@ -29,7 +28,7 @@ $(document).ready(function () {
                 data: {codigoProductor: codigoProductor},
                 type: "get",
                 success: function (result) {
-                    $('#alertProductor').hide();
+
                     $('#numeroSubastaProductor').show().text('000000004');
                     $('#codigoProductor').val(result);
                     $('#codigoTransportista').focus();
@@ -39,7 +38,6 @@ $(document).ready(function () {
     });
     $('#codigoTransportista').change(function (e) {
         e.preventDefault();
-        $('#alertTransportista').text('');
         var codigoTransportista = $('#codigoTransportista').val();
         if (validaFormatoTransportista(codigoTransportista) === true) {
             $.ajax({
@@ -47,7 +45,6 @@ $(document).ready(function () {
                 data: {codigoTransportista: codigoTransportista},
                 type: "get",
                 success: function (result) {
-                    $('#alertTransportista').hide();
                     $('#numeroSub').show().text('000000003');
                     $('#codigoTransportista').val(result.codigoProductor);
                     $('#numeroAnimal').text(result.numeroAnimal);
@@ -71,7 +68,7 @@ function validaFormatoGuia(guia) {
 function validaFormatoProductor(codigoProductor) {
     if (codigoProductor.length < 22 || codigoProductor.length > 22) {
         $('#numeroSubastaProductor').hide();
-        $('#alertProductor').show().text('Formato Invalido.');
+        $('#numeroSubastaProductor').show().text('Error');
         $('#codigoProductor').val('').focus();
         return false;
     }
@@ -80,7 +77,7 @@ function validaFormatoProductor(codigoProductor) {
 function validaFormatoTransportista(codigoTransportista) {
     if (codigoTransportista.length < 18 || codigoTransportista.length > 18) {
         $('#numeroSub').hide();
-        $('#alertTransportista').show().text('Formato Invalido.');
+        $('#numeroSub').show().text('Error.');
         $('#codigoTransportista').val('').focus();
         return false;
     }

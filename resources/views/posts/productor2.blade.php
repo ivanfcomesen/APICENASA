@@ -20,19 +20,18 @@
                 <div class="col-sm-8">   
                     <input type="text" name="codStl" id="" class="form-control" readonly="true" placeholder="Codigo de establecimiento.">
                 </div>
-            </div>
-            <div class="form-group" style="margin-bottom: 7px"> 
-                <label for="cedProductor"class="control-label col-sm-4" >Cedula:</label>
-                <div class="col-sm-8">   
-                    <input type="text" name="cedProductor" id="cedProductor"class="form-control" readonly="true" placeholder="Cedula del productor." >   
-                </div>
-            </div>                       
+            </div>                   
         </form>             
         <div class="col-sm-4"  style="padding: 1px;text-align: right;">
             <label class="control-label col-sm-4" >Numero Subasta</label>           
             <h4 style="margin: 1px;margin-top: 8px"><span class="label label-default" id="numeroSubastaProductor"></span></h4> 
-            <h4 style="margin: 1px;margin-top: 8px"><span class="label label-default" id="talonario"></span></h4> 
-            <h4 style="margin: 1px"><span class="label label-info" id="alertProductor"></span></h4> 
+            <h4 style="margin: 1px;margin-top: 8px"><span class="label label-default" id="talonario"></span></h4>             
+        </div>
+        <div style="padding: 1px;margin-top: 5px" class="col-sm-4 pull-right">
+            <label for="cedula" class="col-sm-12">Cedula:</label>                   
+            <div class="col-sm-12"  style="text-align: center;">                                                                        
+                <input type="text" name="cedula" class="form-control"  placeholder="Cedula productor." readonly="true">    
+            </div>
         </div>
     </div>
 </div>

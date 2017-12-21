@@ -1,5 +1,7 @@
 
-<div class="panel-heading" style="padding: 4px">Total de Animales</div>
+<div class=" col-sm-12">
+    <label for="" >Total de animales:</label> 
+</div>
 <form class="form-horizontal col-sm-12" style="padding-left: 7px;padding-right: 7px">
     <div class="col-sm-4" style="padding-left: 7px;padding-right: 7px">
         <div class="form-group" style="margin-bottom: 7px">

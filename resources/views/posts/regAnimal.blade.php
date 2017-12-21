@@ -31,7 +31,6 @@
                         </div>                   
                     </div>                                                        
                 </div>    
-
                 @include('posts.tabla') 
             </form> 
         </div>  
