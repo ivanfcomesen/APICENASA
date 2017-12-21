@@ -27,6 +27,8 @@ Route::get('formato', 'HeadguiaController@formatGuia');
 
 Route::get('formatoProductor', 'HeadguiaController@formatProductor');
 
+Route::get('formatoTransportista', 'HeadguiaController@formatTransportista');
+
 Route::get('talonario', 'HeadguiaController@guiaExiste');
 
 Route::get('consultarCedulaProductor', 'HeadguiaController@consultCedProdDB');

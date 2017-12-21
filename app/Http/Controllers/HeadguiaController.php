@@ -65,6 +65,20 @@ class HeadguiaController extends Controller {
         return $respuesta;
     }
 
+    public function formatTransportista(Request $request) {
+        //$request['cedula']            
+        $respuesta = substr_replace($request['codigoTransportista'], '-', 6, -11);
+
+        $numAnimales = $this->consulCantAnimales();
+
+        $data = array(
+            'codigoProductor' => $respuesta,
+            'numeroAnimal' => $numAnimales[0]['cantAnimales']);
+        //$resultado[0]['subastaActual'])
+
+        return $data;
+    }
+
     public function formatProductor(Request $request) {
         //$request['cedula']            
         $respuesta = substr_replace($request['codigoProductor'], '-', 6, -15);
