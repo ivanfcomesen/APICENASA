@@ -17,7 +17,7 @@
             <label for="cedProductor"  style="margin-bottom:1px" class="control-label col-sm-4" >Numero Talonario</label>            
             <h4 style="margin: 1px;margin-top: 8px"><span class="label label-default" id="talonario"></span></h4> 
             
-            <h4 style="margin: 1px"><span class="label label-info" id="alert"></span></h4> 
+            <h4 style="margin: 1px"><span class="label label-info" id="alertGuia"></span></h4> 
         </div>
     </div>
   

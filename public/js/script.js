@@ -1,26 +1,17 @@
 
 $(document).ready(function () {
-    $('#alert').hide();
-    $('#alertProductor').hide();
     $('#numeroGuia').change(function (e) {
         e.preventDefault();
-        $('#alert').text('');
-        //    $('#talonario').val('');
+        $('#alertGuia').text('');
         var guia = $('#numeroGuia').val();
-        if ($('#numeroGuia').val().length < 14 || $('#numeroGuia').val().length > 14) {
-            $('#talonario').hide();
-            $('#alert').show().text('Formato Invalido.');
-            $('#numeroGuia').val('');
-            $('#numeroGuia').focus();
-
-        } else {
+        if (validaFormatoGuia(guia) === true) {
             $.ajax({
                 url: 'talonario',
                 data: {guia: guia},
                 type: "get",
                 //    dataType: "json",
                 success: function (result) {
-                    $('#alert').show().text('Nuevo numero de boleta.');
+                    $('#alertGuia').show().text('Nuevo numero de boleta.');
                     $('#talonario').show().text(result.boleta);
                     $('#numeroGuia').val(result.guia);
                 }
@@ -32,14 +23,7 @@ $(document).ready(function () {
         $('#alertProductor').hide();
         var codigoProductor = $('#codigoProductor').val();
 
-        if (codigoProductor.length < 22 || codigoProductor.length > 22) {
-            $('#numeroSubastaProductor').hide();
-            $('#alertProductor').show().text('Formato Invalido.');
-            $('#codigoProductor').val('');
-            $('#codigoProductor').focus();
-            // $('#talonario').text('');
-
-        } else {
+        if (validaFormatoProductor(codigoProductor) === true) {
             $.ajax({
                 url: 'formatoProductor',
                 data: {codigoProductor: codigoProductor},
@@ -52,23 +36,12 @@ $(document).ready(function () {
                 }
             });
         }
-
     });
-
     $('#codigoTransportista').change(function (e) {
         e.preventDefault();
         $('#alertTransportista').text('');
-        e.preventDefault();
         var codigoTransportista = $('#codigoTransportista').val();
-
-        if (codigoTransportista.length < 18 || codigoTransportista.length > 18) {
-            $('#numeroSub').hide();
-            $('#alertTransportista').show().text('Formato Invalido.');
-            $('#codigoTransportista').val('');
-            $('#codigoTransportista').focus();
-            // $('#talonario').text('');
-
-        } else {
+        if (validaFormatoTransportista(codigoTransportista) === true) {
             $.ajax({
                 url: 'formatoTransportista',
                 data: {codigoTransportista: codigoTransportista},
@@ -80,10 +53,36 @@ $(document).ready(function () {
                     $('#numeroAnimal').text(result.numeroAnimal);
                     $('#tipoSubasta').focus();
                     //$('#numeroSubasta').text(result[0].subasta);
-
                 }
             });
         }
-
     });
 });
+
+function validaFormatoGuia(guia) {
+    if (guia.length < 14 || guia.length > 14) {
+        $('#talonario').hide();
+        $('#alertGuia').show().text('Formato invalido.');
+        $('#numeroGuia').val('').focus();
+        return false;
+    }
+    return true;
+}
+function validaFormatoProductor(codigoProductor) {
+    if (codigoProductor.length < 22 || codigoProductor.length > 22) {
+        $('#numeroSubastaProductor').hide();
+        $('#alertProductor').show().text('Formato Invalido.');
+        $('#codigoProductor').val('').focus();
+        return false;
+    }
+    return true;
+}
+function validaFormatoTransportista(codigoTransportista) {
+    if (codigoTransportista.length < 18 || codigoTransportista.length > 18) {
+        $('#numeroSub').hide();
+        $('#alertTransportista').show().text('Formato Invalido.');
+        $('#codigoTransportista').val('').focus();
+        return false;
+    }
+    return true;
+}
