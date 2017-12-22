@@ -54,6 +54,12 @@ $(document).ready(function () {
             });
         }
     });
+
+    $('#agregarFila').click(function (e) {
+        e.preventDefault();
+        addFila();
+
+    });
 });
 
 function validaFormatoGuia(guia) {
@@ -82,4 +88,23 @@ function validaFormatoTransportista(codigoTransportista) {
         return false;
     }
     return true;
+}
+
+function addFila() {
+    // Obtenemos el numero de filas (td) que tiene la primera columna
+    // (tr) del id "tabla"
+    var tds = $("#tablaAnimales tr:first td").length;
+    // Obtenemos el total de columnas (tr) del id "tabla"
+    var trs = $("#tablaAnimales tr").length;
+    var nuevaFila = "<tr>";
+    for (var i = 0; i < tds; i++) {
+        // añadimos las columnas
+        nuevaFila += "<td>columna " + (i + 1) + " Añadida</td>";
+    }
+    // Añadimos una columna con el numero total de columnas.
+    // Añadimos uno al total, ya que cuando cargamos los valores para la
+    // columna, todavia no esta añadida
+    nuevaFila += "<td>" + (trs + 1) + " columnas";
+    nuevaFila += "</tr>";
+    $("#tablaAnimales").append(nuevaFila);
 }
