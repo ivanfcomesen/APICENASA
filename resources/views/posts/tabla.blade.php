@@ -1,6 +1,6 @@
 <div class="col-sm-12">
     <div class="col-sm-12 text-center" style="margin-bottom: 5px">        
-         <button id="agregarFila" type="button" class="btn btn-info">Agregar</button>
+         <button id="agregarFila" type="button" class="btn btn-sm">Agregar</button>
     </div>
     
    
@@ -13,7 +13,7 @@
                 <th style=" width:100px;">Color</th>
             </tr>
         </thead>
-        <tbody id="tablaAnimales" style="display: block; height: 150px; overflow-y: auto;overflow-x: hidden;">
+        <tbody id="tablaAnimales" style="display: block; height: 145px; overflow-y: auto;overflow-x: hidden;">
             <tr >
                 <td style=" width:100px;">01</td>
                 <td style=" width:140px;">02</td> 
@@ -24,5 +24,4 @@
     </table> 
 
 </div>
-
 @include('posts.totales') 

@@ -46,4 +46,20 @@
             </div>                   
         </div>                                                        
     </div> 
-</form>  
+</form>
+<div class="col-sm-12">
+    <textarea class="form-control" rows="3"placeholder="Observaciones" ></textarea>
+
+    <div class="col-sm-4">
+        <button id="agregarFila" type="button" class="btn btn-sm">Guardar</button>
+
+    </div>
+    <div class="col-sm-4">
+        <button id="agregarFila" type="button" class="btn btn-sm">Limpiar</button>
+
+    </div>
+    <div class="col-sm-4">
+
+        <button id="agregarFila" type="button" class="btn btn-sm">Salir</button>
+    </div>
+</div>

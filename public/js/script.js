@@ -29,7 +29,7 @@ $(document).ready(function () {
                 type: "get",
                 success: function (result) {
 
-                    $('#numeroSubastaProductor').show().text('000000004');
+                    $('#numeroSubastaProductor').show().text('00004');
                     $('#codigoProductor').val(result);
                     $('#codigoTransportista').focus();
                 }
@@ -45,7 +45,7 @@ $(document).ready(function () {
                 data: {codigoTransportista: codigoTransportista},
                 type: "get",
                 success: function (result) {
-                    $('#numeroSub').show().text('000000003');
+                    $('#numeroSub').show().text('00002');
                     $('#codigoTransportista').val(result.codigoProductor);
                     $('#numeroAnimal').text(result.numeroAnimal);
                     $('#tipoSubasta').focus();
@@ -110,23 +110,6 @@ function validaFormatoTransportista(codigoTransportista) {
     }
 }
 
-function addFila() {
-    // Obtenemos el numero de filas (td) que tiene la primera columna
-    // (tr) del id "tabla"
-    var tds = $("#tablaAnimales tr:first td").length;
-    // Obtenemos el total de columnas (tr) del id "tabla"
-    var trs = $("#tablaAnimales tr").length;
-    var nuevaFila = "<tr>";
-    for (var i = 0; i < tds; i++) {
-        // añadimos las columnas
-        nuevaFila += "<td>columna " + (i + 1) + " Añadida</td>";
-    }
-    // Añadimos uno al total, ya que cuando cargamos los valores para la
-    // columna, todavia no esta añadida  
-    nuevaFila += "</tr>";
-    $("#tablaAnimales").append(nuevaFila);
-}
-
 function insertaAnimal() {
 
     if ((($('#tipoSubasta').val() === '')) || ($('#tipoSenasa').val() === '')
@@ -155,7 +138,14 @@ function insertaAnimal() {
         $('#color').val('');
     }
 }
-
+function guiaEmpty() {
+    if ($('#numeroGuia').val() === '') {
+        alert('Debe digitar una guia');
+        $('#numeroGuia').focus();
+        return true;
+    }
+    return false;
+}
 
 function validaTipo(campo) {
 
@@ -183,11 +173,19 @@ function validaColor(campo) {
     }
 }
 
-function guiaEmpty() {
-    if ($('#numeroGuia').val() === '') {
-        alert('Debe digitar una guia');
-        $('#numeroGuia').focus();
-        return true;
+function addFila() {
+    // Obtenemos el numero de filas (td) que tiene la primera columna
+    // (tr) del id "tabla"
+    var tds = $("#tablaAnimales tr:first td").length;
+    // Obtenemos el total de columnas (tr) del id "tabla"
+    var trs = $("#tablaAnimales tr").length;
+    var nuevaFila = "<tr>";
+    for (var i = 0; i < tds; i++) {
+        // añadimos las columnas
+        nuevaFila += "<td>columna " + (i + 1) + " Añadida</td>";
     }
-    return false;
+    // Añadimos uno al total, ya que cuando cargamos los valores para la
+    // columna, todavia no esta añadida  
+    nuevaFila += "</tr>";
+    $("#tablaAnimales").append(nuevaFila);
 }
