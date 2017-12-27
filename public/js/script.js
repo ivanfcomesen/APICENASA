@@ -29,8 +29,8 @@ $(document).ready(function () {
                 type: "get",
                 success: function (result) {
 
-                    $('#numeroSubastaProductor').show().text('00004');
-                    $('#codigoProductor').val(result);
+                    $('#numeroSubastaProductor').show().text(result.codigoSubasta);
+                    $('#codigoProductor').val(result.codigoProductor);
                     $('#codigoTransportista').focus();
                 }
             });
@@ -45,7 +45,7 @@ $(document).ready(function () {
                 data: {codigoTransportista: codigoTransportista},
                 type: "get",
                 success: function (result) {
-                    $('#numeroSub').show().text('00002');
+                    $('#numeroSub').show().text(result.codigoSubasta);
                     $('#codigoTransportista').val(result.codigoProductor);
                     $('#numeroAnimal').text(result.numeroAnimal);
                     $('#tipoSubasta').focus();

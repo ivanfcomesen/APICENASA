@@ -71,18 +71,29 @@ class HeadguiaController extends Controller {
 
         $numAnimales = $this->consulCantAnimales();
 
+        $transportista = $this->consultCedTranspDB($request);
+
         $data = array(
             'codigoProductor' => $respuesta,
-            'numeroAnimal' => $numAnimales[0]['cantAnimales']);
+            'numeroAnimal' => $numAnimales[0]['cantAnimales'],
+            'codigoSubasta' => $transportista[0]['codigoTransportista']);
         //$resultado[0]['subastaActual'])
 
         return $data;
     }
 
     public function formatProductor(Request $request) {
-        //$request['cedula']            
+        //$request['cedula']
+
+        $productor = $this->consultCedProdDB($request);
         $respuesta = substr_replace($request['codigoProductor'], '-', 6, -15);
-        return $respuesta;
+
+        $data = array(
+            'codigoProductor' => $respuesta,
+            'codigoSubasta' => $productor[0]['subasta']);
+
+        return $data;
+        // return $respuesta;
     }
 
     public function maxId() {
