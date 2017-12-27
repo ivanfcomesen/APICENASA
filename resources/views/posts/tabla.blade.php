@@ -19,25 +19,7 @@
                 <td style=" width:140px;">02</td> 
                 <td style=" width:140px;">01</td>
                 <td style=" width:100px;">04</td>
-            </tr>                     
-            <tr>
-                <td>02</td>
-                <td>02</td> 
-                <td>03</td>
-                <td>04</td>
-            </tr>  
-            <tr>
-                <td>03</td>
-                <td>02</td> 
-                <td>03</td>
-                <td>07</td>
-            </tr>
-            <tr>
-                <td>04</td>
-                <td>02</td> 
-                <td>03</td>
-                <td>07</td>
-            </tr>
+            </tr>                               
         </tbody>
     </table> 
 

@@ -54,11 +54,16 @@ $(document).ready(function () {
             });
         }
     });
-
     $('#agregarFila').click(function (e) {
         e.preventDefault();
-        addFila();
+        insertaAnimal();
+    });
 
+    $('#tipoSubasta').change(function (e) {
+        validaTipo($('#tipoSubasta').val());
+    });
+    $('#color').change(function (e) {
+        validaColor($('#color').val());
     });
 });
 
@@ -72,22 +77,37 @@ function validaFormatoGuia(guia) {
     return true;
 }
 function validaFormatoProductor(codigoProductor) {
-    if (codigoProductor.length < 22 || codigoProductor.length > 22) {
-        $('#numeroSubastaProductor').hide();
-        $('#numeroSubastaProductor').show().text('Error');
-        $('#codigoProductor').val('').focus();
+
+    if (guiaEmpty() === true) {
+        $('#codigoProductor').val('');
+        $('#numeroGuia').focus();
         return false;
+    } else {
+        if (codigoProductor.length < 22 || codigoProductor.length > 22) {
+            $('#numeroSubastaProductor').hide();
+            $('#numeroSubastaProductor').show().text('Error');
+            $('#codigoProductor').val('').focus();
+            return false;
+
+        } else
+            return true;
     }
-    return true;
 }
 function validaFormatoTransportista(codigoTransportista) {
-    if (codigoTransportista.length < 18 || codigoTransportista.length > 18) {
-        $('#numeroSub').hide();
-        $('#numeroSub').show().text('Error.');
-        $('#codigoTransportista').val('').focus();
+
+    if (guiaEmpty() === true) {
+        $('#codigoTransportista').val('');
+        $('#numeroGuia').focus();
         return false;
+    } else {
+        if (codigoTransportista.length < 18 || codigoTransportista.length > 18) {
+            $('#numeroSub').hide();
+            $('#numeroSub').show().text('Error.');
+            $('#codigoTransportista').val('').focus();
+            return false;
+        } else
+            return true;
     }
-    return true;
 }
 
 function addFila() {
@@ -101,10 +121,73 @@ function addFila() {
         // añadimos las columnas
         nuevaFila += "<td>columna " + (i + 1) + " Añadida</td>";
     }
-    // Añadimos una columna con el numero total de columnas.
     // Añadimos uno al total, ya que cuando cargamos los valores para la
-    // columna, todavia no esta añadida
-    nuevaFila += "<td>" + (trs + 1) + " columnas";
+    // columna, todavia no esta añadida  
     nuevaFila += "</tr>";
     $("#tablaAnimales").append(nuevaFila);
+}
+
+function insertaAnimal() {
+
+    if ((($('#tipoSubasta').val() === '')) || ($('#tipoSenasa').val() === '')
+            || ($('#tipoSenasa').val() === ''))
+    {
+        alert("Debe digitar todos los codigos");
+        $('#tipoSubasta').val('').focus();
+
+    } else {
+        $numeroAnimal = parseInt($('#numeroAnimal').text());
+        $tipoSubasta = $('#tipoSubasta').val();
+        $tipoSenasa = $('#tipoSenasa').val();
+        $color = $('#color').val();
+        var nuevaFila = "";
+        // añadimos las columnas
+        nuevaFila = "<tr><td>" + ($numeroAnimal + 1) + "</td>"
+                + "<td>" + $tipoSubasta + "</td>"
+                + "<td>" + $tipoSenasa + "</td>"
+                + "<td>" + $color;
+        +"</td></tr>";
+
+        $("#tablaAnimales").append(nuevaFila);
+        $('#numeroAnimal').text("0" + ($numeroAnimal + 1));
+        $('#tipoSubasta').val('');
+        $('#tipoSenasa').val('');
+        $('#color').val('');
+    }
+}
+
+
+function validaTipo(campo) {
+
+    if (campo.length < 2) {
+        alert('Formato Invalido');
+        $('#tipoSubasta').val('').focus();
+    }
+
+    if (parseInt(campo) < 1 || parseInt(campo) > 12) {
+        alert('Codigo Invalido');
+        $('#tipoSubasta').val('').focus();
+    }
+}
+
+function validaColor(campo) {
+
+    if (campo.length < 2) {
+        alert('Codigo Invalido');
+        $('#color').val('').focus();
+    }
+
+    if (parseInt(campo) < 1 || parseInt(campo) > 9) {
+        alert('Formato Invalido');
+        $('#color').val('').focus();
+    }
+}
+
+function guiaEmpty() {
+    if ($('#numeroGuia').val() === '') {
+        alert('Debe digitar una guia');
+        $('#numeroGuia').focus();
+        return true;
+    }
+    return false;
 }

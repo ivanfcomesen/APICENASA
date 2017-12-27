@@ -21,13 +21,13 @@
                     <div class="form-group" style="margin-bottom: 7px">
                         <label for="tipoSenasa" class="col-sm-4">SENASA:</label>                   
                         <div class="col-sm-8"> 
-                            <input type="text" name="tipoSenasa" class="form-control"placeholder="Tipo SENASA" >
+                            <input type="text" name="tipoSenasa" id="tipoSenasa" class="form-control"placeholder="Tipo SENASA" >
                         </div>                   
                     </div>   
                     <div class="form-group" style="margin-bottom: 7px">
-                        <label for="code" class="col-sm-4">Color:</label>
+                        <label for="color" class="col-sm-4">Color:</label>
                         <div class="col-sm-8"> 
-                            <input type="text" name="code"class="form-control" placeholder="Color del animal." > 
+                            <input type="text" name="color" id="color"class="form-control" placeholder="Color del animal." > 
                         </div>                   
                     </div>                                                        
                 </div>    
