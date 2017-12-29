@@ -2,8 +2,7 @@
     <div class="col-sm-12 text-center" style="margin-bottom: 5px">        
          <button id="agregarFila" type="button" class="btn btn-sm">Agregar</button>
     </div>
-    
-   
+       
     <table  class="table table-hover">
         <thead style="display: block;" >
             <tr class="active"  >

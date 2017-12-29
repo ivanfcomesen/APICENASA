@@ -19,6 +19,5 @@
             
             <h4 style="margin: 1px"><span class="label label-info" id="alertGuia"></span></h4> 
         </div>
-    </div>
-  
+    </div>  
 </div>  
