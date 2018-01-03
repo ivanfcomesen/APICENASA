@@ -78,8 +78,8 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         @yield('script')
-
-
+        <script src="{{ asset('js/jquery.tabledit.js') }}"></script>
+        <script src="{{ asset('js/jquery.tabledit.min.js') }}"></script>        
         
     </body>
 </html>

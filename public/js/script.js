@@ -3,11 +3,11 @@ $(document).ready(function () {
     $('#numeroGuia').change(function (e) {
         e.preventDefault();
         $('#alertGuia').text('');
-        var guia = $('#numeroGuia').val();
+        var guia = $('#numeroGuia');
         if (validaFormatoGuia(guia) === true) {
             $.ajax({
                 url: 'talonario',
-                data: {guia: guia},
+                data: {guia: guia.val()},
                 type: "get",
                 //    dataType: "json",
                 success: function (result) {
@@ -20,12 +20,12 @@ $(document).ready(function () {
     });
     $('#codigoProductor').change(function (e) {
         e.preventDefault();
-        var codigoProductor = $('#codigoProductor').val();
+        var codigoProductor = $('#codigoProductor');
 
         if (validaFormatoProductor(codigoProductor) === true) {
             $.ajax({
                 url: 'formatoProductor',
-                data: {codigoProductor: codigoProductor},
+                data: {codigoProductor: codigoProductor.val()},
                 type: "get",
                 success: function (result) {
 
@@ -38,11 +38,11 @@ $(document).ready(function () {
     });
     $('#codigoTransportista').change(function (e) {
         e.preventDefault();
-        var codigoTransportista = $('#codigoTransportista').val();
+        var codigoTransportista = $('#codigoTransportista');
         if (validaFormatoTransportista(codigoTransportista) === true) {
             $.ajax({
                 url: 'formatoTransportista',
-                data: {codigoTransportista: codigoTransportista},
+                data: {codigoTransportista: codigoTransportista.val()},
                 type: "get",
                 success: function (result) {
                     $('#numeroSub').show().text(result.codigoSubasta);
@@ -57,62 +57,91 @@ $(document).ready(function () {
     $('#agregarFila').click(function (e) {
         e.preventDefault();
         insertaAnimal();
+        $('#tablaAnimales').Tabledit({
+            url: false,
+            editButton: false,
+            deleteButton: false,
+            hideIdentifier: false,
+            columns: {
+                identifier: [0, 'animal'],
+                editable: [[1, 'tipoSubasta'], [2, 'tipoSenasa'], [3, 'color']]
+            }
+        });
     });
 
     $('#tipoSubasta').change(function (e) {
-        validaTipo($('#tipoSubasta').val());
+        validaTipo($('#tipoSubasta'));
     });
     $('#color').change(function (e) {
-        validaColor($('#color').val());
+        validaColor($('#color'));
+
     });
+    
+      $('#quitarFila').click(function (e) {
+      //$('#tablaAnimales tr:last').remove();
+        removeTableRow($('#tablaAnimales'));
+    });
+
 });
 
+function guiaEmpty() {
+
+    var flag = false;
+    var guia = $('#numeroGuia');
+    if (guia.val() === '') {
+        alert('Debe digitar una guia');
+        guia.focus();
+        flag = true;
+    }
+    return flag;
+}
+
 function validaFormatoGuia(guia) {
-    if (guia.length < 14 || guia.length > 14) {
+    if (guia.val().length < 14 || guia.val().length > 14) {
         $('#talonario').hide();
         $('#alertGuia').show().text('Formato invalido.');
-        $('#numeroGuia').val('').focus();
+        guia.val('').focus();
         return false;
     }
     return true;
 }
 function validaFormatoProductor(codigoProductor) {
 
+    var flag = true;
+
     if (guiaEmpty() === true) {
-        $('#codigoProductor').val('');
-        $('#numeroGuia').focus();
-        return false;
+        codigoProductor.val('');
+        flag = false;
     } else {
-        if (codigoProductor.length < 22 || codigoProductor.length > 22) {
+        if (codigoProductor.val().length < 22 || codigoProductor.val().length > 22) {
             $('#numeroSubastaProductor').hide();
             $('#numeroSubastaProductor').show().text('Error');
-            $('#codigoProductor').val('').focus();
-            return false;
-
-        } else
-            return true;
+            codigoProductor.val('').focus();
+            flag = false;
+        }
     }
+    return flag;
 }
 function validaFormatoTransportista(codigoTransportista) {
 
+    var flag = true;
     if (guiaEmpty() === true) {
-        $('#codigoTransportista').val('');
-        $('#numeroGuia').focus();
-        return false;
+        codigoTransportista.val('');
+        flag = false;
     } else {
-        if (codigoTransportista.length < 18 || codigoTransportista.length > 18) {
+        if (codigoTransportista.val().length < 18 || codigoTransportista.val().length > 18) {
             $('#numeroSub').hide();
             $('#numeroSub').show().text('Error.');
-            $('#codigoTransportista').val('').focus();
-            return false;
-        } else
-            return true;
+            codigoTransportista.val('').focus();
+            flag = false;
+        }
     }
+    return flag;
 }
 
 function insertaAnimal() {
 
-    if ((($('#tipoSubasta').val() === '')) || ($('#tipoSenasa').val() === '')
+    if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').val() === '')
             || ($('#tipoSenasa').val() === ''))
     {
         alert("Debe digitar todos los codigos");
@@ -125,67 +154,53 @@ function insertaAnimal() {
         $color = $('#color').val();
         var nuevaFila = "";
         // añadimos las columnas
-        nuevaFila = "<tr><td>" + ($numeroAnimal + 1) + "</td>"
-                + "<td>" + $tipoSubasta + "</td>"
-                + "<td>" + $tipoSenasa + "</td>"
-                + "<td>" + $color;
+        nuevaFila = "<tr><td style=width:100px; >" + ($numeroAnimal + 1) + "</td>"
+                + "<td style=width:140px;>" + $tipoSubasta + "</td>"
+                + "<td style=width:140px;>" + $tipoSenasa + "</td>"
+                + "<td style=width:100px;>" + $color;
         +"</td></tr>";
 
         $("#tablaAnimales").append(nuevaFila);
-        $('#numeroAnimal').text("0" + ($numeroAnimal + 1));
-        $('#tipoSubasta').val('');
+        $('#numeroAnimal').text("0" + ($numeroAnimal + 1));        
         $('#tipoSenasa').val('');
         $('#color').val('');
-    }
-}
-function guiaEmpty() {
-    if ($('#numeroGuia').val() === '') {
-        alert('Debe digitar una guia');
-        $('#numeroGuia').focus();
-        return true;
-    }
-    return false;
-}
-
-function validaTipo(campo) {
-
-    if (campo.length < 2) {
-        alert('Formato Invalido');
-        $('#tipoSubasta').val('').focus();
-    }
-
-    if (parseInt(campo) < 1 || parseInt(campo) > 12) {
-        alert('Codigo Invalido');
         $('#tipoSubasta').val('').focus();
     }
 }
 
-function validaColor(campo) {
 
-    if (campo.length < 2) {
-        alert('Codigo Invalido');
-        $('#color').val('').focus();
-    }
-
-    if (parseInt(campo) < 1 || parseInt(campo) > 9) {
+function validaTipo(tipo) {
+    if (tipo.val().length < 2) {
         alert('Formato Invalido');
-        $('#color').val('').focus();
+        tipo.val('').focus();
+    }
+    if (parseInt(tipo.val()) < 1 || parseInt(tipo.val()) > 12) {
+        alert('Codigo Invalido');
+        tipo.val('').focus();
     }
 }
 
-function addFila() {
-    // Obtenemos el numero de filas (td) que tiene la primera columna
-    // (tr) del id "tabla"
-    var tds = $("#tablaAnimales tr:first td").length;
-    // Obtenemos el total de columnas (tr) del id "tabla"
-    var trs = $("#tablaAnimales tr").length;
-    var nuevaFila = "<tr>";
-    for (var i = 0; i < tds; i++) {
-        // añadimos las columnas
-        nuevaFila += "<td>columna " + (i + 1) + " Añadida</td>";
+function validaColor(color) {
+    if (color.val().length < 2) {
+        alert('Formato Invalido');
+        color.val('').focus();
     }
-    // Añadimos uno al total, ya que cuando cargamos los valores para la
-    // columna, todavia no esta añadida  
-    nuevaFila += "</tr>";
-    $("#tablaAnimales").append(nuevaFila);
+    if (parseInt(color.val()) < 1 || parseInt(color.val()) > 9) {
+        alert('Codigo Invalido');
+        color.val('').focus();
+    }
 }
+
+function removeTableRow(jQtable){
+    jQtable.each(function(){
+        if($('tbody', this).length > 0){
+            $('tbody tr:last', this).remove();
+             $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text())-1));
+        }else {
+            $('tr:last', this).remove();
+        }
+    });
+}
+
+
+
