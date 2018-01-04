@@ -1,8 +1,11 @@
+<div class="panel panel-primary" style="margin-bottom: 5px">
+    <div class="panel-heading col-sm-12"  style="padding: 2px">
+        <label class="col-sm-4"  id="">Productor:</label>
+        <label class="col-sm-6 pull-right" style="text-align: right;" id="nombreProductor"></label>
+    </div>
+    <div class="panel-body"  style="padding: 4px">
+        <form class="form-horizontal col-sm-8" style="padding-top: 5px">
 
-<div class="panel panel-primary"  style="margin-bottom: 5px">
-    <div class="panel-heading" style="padding: 4px">PRODUCTOR</div>
-    <div class="panel-body" style="padding: 4px">
-        <form class="form-horizontal col-sm-8">
             <div class="form-group" style="margin-bottom: 7px">
                 <label for="codigoProductor" class="col-sm-4" >Codigo:</label>
                 <div class="col-sm-8">   
@@ -34,4 +37,5 @@
             </div>
         </div>
     </div>
+
 </div>

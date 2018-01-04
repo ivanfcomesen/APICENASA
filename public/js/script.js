@@ -31,6 +31,7 @@ $(document).ready(function () {
 
                     $('#numeroSubastaProductor').show().text(result.codigoSubasta);
                     $('#codigoProductor').val(result.codigoProductor);
+                    $('#nombreProductor').text("Ivan Francisco Sequeira Mesen");
                     $('#codigoTransportista').focus();
                 }
             });
@@ -47,8 +48,9 @@ $(document).ready(function () {
                 success: function (result) {
                     $('#numeroSub').show().text(result.codigoSubasta);
                     $('#codigoTransportista').val(result.codigoProductor);
-                    $('#numeroAnimal').text(result.numeroAnimal);
+                    $('#numeroAnimal').text(parseInt(result.numeroAnimal)+1);
                     $('#tipoSubasta').focus();
+                   $('#nombreTransportista').text("Pedro Juan Robles Sibaja");  
                     //$('#numeroSubasta').text(result[0].subasta);
                 }
             });
@@ -76,9 +78,9 @@ $(document).ready(function () {
         validaColor($('#color'));
 
     });
-    
-      $('#quitarFila').click(function (e) {
-      //$('#tablaAnimales tr:last').remove();
+
+    $('#quitarFila').click(function (e) {
+        //$('#tablaAnimales tr:last').remove();
         removeTableRow($('#tablaAnimales'));
     });
 
@@ -138,36 +140,30 @@ function validaFormatoTransportista(codigoTransportista) {
     }
     return flag;
 }
-
 function insertaAnimal() {
 
-    if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').val() === '')
-            || ($('#tipoSenasa').val() === ''))
+
+    if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').val() === ''))
     {
         alert("Debe digitar todos los codigos");
         $('#tipoSubasta').val('').focus();
-
     } else {
-        $numeroAnimal = parseInt($('#numeroAnimal').text());
-        $tipoSubasta = $('#tipoSubasta').val();
-        $tipoSenasa = $('#tipoSenasa').val();
-        $color = $('#color').val();
+
         var nuevaFila = "";
         // añadimos las columnas
-        nuevaFila = "<tr><td style=width:100px; >" + ($numeroAnimal + 1) + "</td>"
-                + "<td style=width:140px;>" + $tipoSubasta + "</td>"
-                + "<td style=width:140px;>" + $tipoSenasa + "</td>"
-                + "<td style=width:100px;>" + $color;
-        +"</td></tr>";
+        nuevaFila = "<tr><td style=width:100px; >" + (parseInt($('#numeroAnimal').text())) + "</td>"
+                + "<td style=width:140px;>" + $('#tipoSubasta').val() + "</td>"
+                + "<td style=width:140px;>" + $('#tipoSenasa').val() + "</td>"
+                + "<td style=width:100px;>" + $('#color').val() + "</td></tr>";
 
+        totalAnimales(parseInt($("#tipoSubasta").val()));
         $("#tablaAnimales").append(nuevaFila);
-        $('#numeroAnimal').text("0" + ($numeroAnimal + 1));        
+        $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text()) + 1));
         $('#tipoSenasa').val('');
         $('#color').val('');
         $('#tipoSubasta').val('').focus();
     }
 }
-
 
 function validaTipo(tipo) {
     if (tipo.val().length < 2) {
@@ -191,15 +187,37 @@ function validaColor(color) {
     }
 }
 
-function removeTableRow(jQtable){
-    jQtable.each(function(){
-        if($('tbody', this).length > 0){
+function removeTableRow(jQtable) {
+    jQtable.each(function () {
+        if ($('tbody', this).length > 0) {
             $('tbody tr:last', this).remove();
-             $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text())-1));
-        }else {
+            $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text()) - 1));
+        } else {
             $('tr:last', this).remove();
         }
     });
+}
+
+function totalAnimales(numero) {
+    //var toros =  parseInt($('#toros').text());        
+    if (numero === 1) {
+        $('#toros').text(parseInt($('#toros').text()) + 1);
+    } else
+    if (numero === 2) {
+        $('#toretes').text(parseInt($('#toretes').text()) + 1);
+    } else
+    if (numero === 3) {
+        $('#terneros').text(parseInt($('#terneros').text()) + 1);
+    } else
+    if (numero === 4) {
+        $('#vacas').text(parseInt($('#vacas').text()) + 1);
+    } else
+    if (numero === 5) {
+        $('#vaquillas').text(parseInt($('#vaquillas').text()) + 1);
+    } else
+    if (numero === 6) {
+        $('#terneras').text(parseInt($('#terneras').text()) + 1);
+    }
 }
 
 

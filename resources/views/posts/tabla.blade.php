@@ -1,10 +1,5 @@
-<div class="col-sm-12">
-    <div class="col-sm-12 text-center" style="margin-bottom: 5px">        
-         <button id="agregarFila" type="button" class="btn btn-sm">Agregar</button>
-         <button id="quitarFila" type="button" class="btn btn-sm">Quitar</button>
-    </div>
-       
-    <table  class="table table-hover" id="tablaAnimales">
+
+    <table  class="table table-hover" id="tablaAnimales"  style="margin-bottom: 5px">
         <thead style="display: block;" >
             <tr class="active"  >
                 <th style=" width:100px;">Animal</th>
@@ -13,10 +8,25 @@
                 <th style=" width:100px;">Color</th>
             </tr>
         </thead>
-        <tbody  style="display: block; height: 145px; overflow-y: auto;overflow-x: hidden;">
-                                
+        <tbody  style="display: block; height: 200px; overflow-y: auto;overflow-x: hidden;">
+
         </tbody>
+
+        <tfoot  style="display: block;margin-bottom: 5px">
+            <tr>
+                <th colspan="3">Total de animales:</th>              
+            </tr>
+            <tr class="active">
+                <td style=" width:160px;">Toros:<span id="toros">0</span></td>
+                <td style=" width:160px;" >Novillos:<span id="vacas">0</span></td>
+                <td  style=" width:160px;">Terneros:<span id="terneros">0</span></td>
+            </tr>
+             <tr class="active">
+                 <td>Vacas <span id="toretes">0</span></td>
+                <td>Novillas:<span id="vaquillas">0</span></td>
+                <td>Terneras:<span id="terneras">0</span></td>
+            </tr>
+        </tfoot>
     </table>     
 
-</div>
 @include('posts.totales') 
