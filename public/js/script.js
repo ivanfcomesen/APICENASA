@@ -48,9 +48,9 @@ $(document).ready(function () {
                 success: function (result) {
                     $('#numeroSub').show().text(result.codigoSubasta);
                     $('#codigoTransportista').val(result.codigoProductor);
-                    $('#numeroAnimal').text(parseInt(result.numeroAnimal)+1);
+                    $('#numeroAnimal').text(parseInt(result.numeroAnimal) + 1);
                     $('#tipoSubasta').focus();
-                   $('#nombreTransportista').text("Pedro Juan Robles Sibaja");  
+                    $('#nombreTransportista').text("Pedro Juan Robles Sibaja");
                     //$('#numeroSubasta').text(result[0].subasta);
                 }
             });
@@ -148,12 +148,13 @@ function insertaAnimal() {
         alert("Debe digitar todos los codigos");
         $('#tipoSubasta').val('').focus();
     } else {
-
+        
+       var tipoSena = tiposSenasa(parseInt($('#tipoSubasta').val()));
         var nuevaFila = "";
         // añadimos las columnas
         nuevaFila = "<tr><td style=width:100px; >" + (parseInt($('#numeroAnimal').text())) + "</td>"
                 + "<td style=width:140px;>" + $('#tipoSubasta').val() + "</td>"
-                + "<td style=width:140px;>" + $('#tipoSenasa').val() + "</td>"
+                + "<td style=width:140px;>" + tipoSena + "</td>"
                 + "<td style=width:100px;>" + $('#color').val() + "</td></tr>";
 
         totalAnimales(parseInt($("#tipoSubasta").val()));
@@ -199,7 +200,7 @@ function removeTableRow(jQtable) {
 }
 
 function totalAnimales(numero) {
-    //var toros =  parseInt($('#toros').text());        
+
     if (numero === 1) {
         $('#toros').text(parseInt($('#toros').text()) + 1);
     } else
@@ -218,6 +219,30 @@ function totalAnimales(numero) {
     if (numero === 6) {
         $('#terneras').text(parseInt($('#terneras').text()) + 1);
     }
+
+}
+
+function tiposSenasa(numero) {
+    var tipo = 'indefinido';
+    if (numero === 1) {
+        tipo = "Toro";
+    } else
+    if (numero === 2) {
+        tipo = "Novillo";
+    } else
+    if (numero === 3) {
+        tipo = "Ternera";
+    } else
+    if (numero === 4) {
+        tipo = "Vaca";
+    } else
+    if (numero === 5) {
+        tipo = "Novilla";
+    } else
+    if (numero === 6) {
+        tipo = "Ternero";
+    }
+    return tipo;
 }
 
 
