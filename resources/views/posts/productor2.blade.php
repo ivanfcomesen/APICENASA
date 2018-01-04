@@ -13,15 +13,15 @@
                 </div>
             </div>
             <div class="form-group" style="margin-bottom: 7px"> 
-                <label for="finca" class="control-label col-sm-4">Finca: </label>
+                <label for="fincaProductor" class="control-label col-sm-4">Finca: </label>
                 <div class="col-sm-8">   
-                    <input type="text" name="finca" class="form-control" readonly="true" placeholder="Finca.">  
+                    <input type="text" name="fincaProductor" id="fincaProductor" class="form-control" readonly="true" placeholder="Finca.">  
                 </div>
             </div>
             <div class="form-group" style="margin-bottom: 7px"> 
-                <label for="codStl" class="control-label col-sm-4" >Cod. Establ:</label>
+                <label for="codStblTransportista" class="control-label col-sm-4" >Cod. Establ:</label>
                 <div class="col-sm-8">   
-                    <input type="text" name="codStl" id="" class="form-control" readonly="true" placeholder="Codigo de establecimiento.">
+                    <input type="text" name="codStblProductor" id="codStblProductor" class="form-control" readonly="true" placeholder="Codigo de establecimiento.">
                 </div>
             </div>                   
         </form>             
@@ -31,9 +31,9 @@
             <h4 style="margin: 1px;margin-top: 8px"><span class="label label-default" id="talonario"></span></h4>             
         </div>
         <div style="padding: 1px;margin-top: 5px" class="col-sm-4 pull-right">
-            <label for="cedula" class="col-sm-12">Cedula:</label>                   
+            <label for="cedulaProductor" class="col-sm-12">Cedula:</label>                   
             <div class="col-sm-12"  style="text-align: center;">                                                                        
-                <input type="text" name="cedula" class="form-control"  placeholder="Cedula productor." readonly="true">    
+                <input type="text" name="cedulaProductor" id="cedulaProductor" class="form-control"  placeholder="Cedula productor." readonly="true">    
             </div>
         </div>
     </div>

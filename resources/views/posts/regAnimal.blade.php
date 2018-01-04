@@ -21,9 +21,9 @@
                 </div>
                 <div class="col-sm-5" style="padding-left: 7px;padding-right: 7px">
                    <div class="form-group" style="margin-bottom: 7px">
-                        <label for="tipoSENASA" class="col-sm-4">SENASA:</label>                   
+                        <label for="tipoSenasa" class="col-sm-4">SENASA:</label>                   
                         <div class="col-sm-6"  style="text-align: center;">                                                                        
-                            <h4 style="margin: 2px"><span class="label label-default" id="tipoSENASA" name="tipoSENASA">Novillo</span></h4>
+                            <h4 style="margin: 2px"><span class="label label-default" id="tipoSenasa" name="tipoSenasa"></span></h4>
                         </div>
                     </div>
                     <div class="form-group" style="margin-bottom: 7px">

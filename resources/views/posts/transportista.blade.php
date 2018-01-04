@@ -12,15 +12,15 @@
                 </div> 
             </div>
             <div class="form-group" style="margin-bottom: 7px">
-                <label for="cedTransporte" class="col-sm-4">Cedula</label>
+                <label for="cedulaTransportista" class="col-sm-4">Cedula</label>
                 <div class="col-sm-8"> 
-                    <input type="text" name="cedTransporte" id="cedTransporte"class="form-control" readonly="true" placeholder="Cedula juridica.">
+                    <input type="text" name="cedulaTransportista" id="cedulaTransportista"class="form-control" readonly="true" placeholder="Cedula juridica.">
                 </div> 
             </div>   
             <div class="form-group" style="margin-bottom: 7px">
-                <label for="numeroAnimal" class="col-sm-4">Placa:</label>                   
+                <label for="placaTransportista" class="col-sm-4">Placa:</label>                   
                 <div class="col-sm-8"> 
-                    <input type="text" name="placa" class="form-control" readonly="true" placeholder="Placa del vehiculo"> 
+                    <input type="text" name="placaTransportista" id="placaTransportista" class="form-control" readonly="true" placeholder="Placa del vehiculo"> 
                 </div> 
             </div>                                                
         </form>

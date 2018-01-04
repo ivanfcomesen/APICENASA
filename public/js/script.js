@@ -32,6 +32,9 @@ $(document).ready(function () {
                     $('#numeroSubastaProductor').show().text(result.codigoSubasta);
                     $('#codigoProductor').val(result.codigoProductor);
                     $('#nombreProductor').text("Ivan Francisco Sequeira Mesen");
+                    $('#fincaProductor').val("123456");
+                    $('#codStblProductor').val("123-123456");
+                    $('#cedulaProductor').val("0123456789");                              
                     $('#codigoTransportista').focus();
                 }
             });
@@ -51,6 +54,8 @@ $(document).ready(function () {
                     $('#numeroAnimal').text(parseInt(result.numeroAnimal) + 1);
                     $('#tipoSubasta').focus();
                     $('#nombreTransportista').text("Pedro Juan Robles Sibaja");
+                    $('#placaTransportista').val("123-123456");
+                    $('#cedulaTransportista').val("0123456789");
                     //$('#numeroSubasta').text(result[0].subasta);
                 }
             });
@@ -143,13 +148,13 @@ function validaFormatoTransportista(codigoTransportista) {
 function insertaAnimal() {
 
 
-    if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').val() === ''))
+    if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').text() === ''))
     {
         alert("Debe digitar todos los codigos");
         $('#tipoSubasta').val('').focus();
     } else {
-        
-       var tipoSena = tiposSenasa(parseInt($('#tipoSubasta').val()));
+
+        var tipoSena = tiposSenasa(parseInt($('#tipoSubasta').val()));
         var nuevaFila = "";
         // añadimos las columnas
         nuevaFila = "<tr><td style=width:100px; >" + (parseInt($('#numeroAnimal').text())) + "</td>"
@@ -167,6 +172,9 @@ function insertaAnimal() {
 }
 
 function validaTipo(tipo) {
+
+    var tipoSena = tiposSenasa(parseInt(tipo.val()));
+
     if (tipo.val().length < 2) {
         alert('Formato Invalido');
         tipo.val('').focus();
@@ -175,6 +183,7 @@ function validaTipo(tipo) {
         alert('Codigo Invalido');
         tipo.val('').focus();
     }
+    $('#tipoSenasa').text(tipoSena);
 }
 
 function validaColor(color) {
