@@ -51,7 +51,7 @@ $(document).ready(function () {
                 success: function (result) {
                     $('#numeroSub').show().text(result.codigoSubasta);
                     $('#codigoTransportista').val(result.codigoProductor);
-                    $('#numeroAnimal').text(parseInt(result.numeroAnimal) + 1);
+                    $('#numeroAnimal').text( "0"+(parseInt(result.numeroAnimal) + 1));
                     $('#tipoSubasta').focus();
                     $('#nombreTransportista').text("Pedro Juan Robles Sibaja");
                     $('#placaTransportista').val("123-123456");
@@ -71,7 +71,7 @@ $(document).ready(function () {
             hideIdentifier: false,
             columns: {
                 identifier: [0, 'animal'],
-                editable: [[1, 'tipoSubasta'], [2, 'tipoSenasa'], [3, 'color']]
+                editable: [[3, 'color']]
             }
         });
     });

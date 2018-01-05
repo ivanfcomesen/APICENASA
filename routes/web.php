@@ -43,7 +43,3 @@ Route::get('/testeandop', function () {
 
     return view('posts.productor');
 });
-
-
-
-

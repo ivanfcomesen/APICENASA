@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="col-md-6">       
+    <div class="col-md-6">  
+             
         @include('posts.headGuia') 
         @include('posts.marcas')                     
         @include('posts.productor2') 
