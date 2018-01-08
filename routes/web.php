@@ -25,6 +25,8 @@ Route::get('/productor', 'HeadguiaController@index');
 
 Route::get('formato', 'HeadguiaController@formatGuia');
 
+Route::get('consulSubActual', 'HeadguiaController@consulSubActual');
+
 Route::get('formatoProductor', 'HeadguiaController@formatProductor');
 
 Route::get('formatoTransportista', 'HeadguiaController@formatTransportista');

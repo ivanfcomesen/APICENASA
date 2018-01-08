@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\EndPointsSENASA\Cliente;
+use App\SubastaBdConfig;
 use Illuminate\Http\Request;
 
 class HeadguiaController extends Controller {
 
     protected $cliente;
+    public $conexion;
 
-    public function __construct(Cliente $cliente) {
+    public function __construct(Cliente $cliente, SubastaBdConfig $conexion) {
         $this->cliente = $cliente;
+        $this->conexion = $conexion;
     }
 
     public function index() {
@@ -142,21 +145,15 @@ class HeadguiaController extends Controller {
 
     public function consulSubActual() {
         //. $request['cedula']
-        $conn = DB::connection("odbc");
-        $sql = "SELECT Subas_Actual AS subastaActual "
-                . "FROM Compania WHERE (Ced_Juridica = '" . "3-002-071034" . "')";
-        $resultado = json_encode($conn->select($sql));
-        return json_decode($resultado, true); //($resultado[0]['subastaActual']);
+        return $this->conexion->consulta("SELECT Subas_Actual AS subastaActual "
+                        . "FROM Compania WHERE (Ced_Juridica = '" . "3-002-071034" . "')");
     }
 
     public function consulCantAnimales() {
         //. $request['cedula']         
         $data = $this->consulSubActual();
-        $conn = DB::connection("odbc");
-        $sql = "SELECT Cant_Animales AS cantAnimales "
-                . "FROM Reg_Subasta WHERE (Cod_Subasta = '" . $data[0]['subastaActual'] . "')";
-        $resultado = json_encode($conn->select($sql));
-        return json_decode($resultado, true); //($resultado[0]['subastaActual']);
+        return $this->conexion->consulta("SELECT Cant_Animales AS cantAnimales "
+                        . "FROM Reg_Subasta WHERE (Cod_Subasta = '" . $data[0]['subastaActual'] . "')");
     }
 
 }
