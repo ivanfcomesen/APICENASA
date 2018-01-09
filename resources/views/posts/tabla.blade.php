@@ -14,7 +14,7 @@
 
     <tfoot  style="display: block;margin-bottom: 5px">
         <tr>
-            <th colspan="3">Total de animales: <span id="">100</span></th>              
+            <th colspan="">Total de animales: <span id="">100</span></th>              
         </tr>
         <!-- 
         <tr class="active" style=" width:160px;">

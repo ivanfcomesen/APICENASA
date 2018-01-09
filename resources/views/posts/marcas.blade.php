@@ -1,7 +1,7 @@
 
 @extends('layouts.panelMarcas')
 @section('encabezadoMarcas')
-<label class="col-sm-4"  id="">MARCAS DE FIERROS</label>
+<label class="col-sm-4"  id="">Marcas de Fierros.</label>
 
 @endsection
 

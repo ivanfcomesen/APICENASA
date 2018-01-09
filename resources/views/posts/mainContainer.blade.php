@@ -10,6 +10,9 @@
     <div class="col-md-5">
         @include('posts.regAnimal')                      
     </div>
+     <div class="col-md-2">
+        @include('posts.tablaTipos')                      
+    </div>
 
 </div>
 @endsection
