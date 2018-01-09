@@ -14,8 +14,9 @@
 
     <tfoot  style="display: block;margin-bottom: 5px">
         <tr>
-            <th colspan="3">Total de animales:</th>              
+            <th colspan="3">Total de animales: <span id="">100</span></th>              
         </tr>
+        <!-- 
         <tr class="active" style=" width:160px;">
             <td style=" width:160px;">Toros:<span id="toros">0</span></td>
             <td style=" width:160px;" >Novillos:<span id="vacas">0</span></td>
@@ -25,7 +26,7 @@
             <td>Vacas <span id="toretes">0</span></td>
             <td>Novillas:<span id="vaquillas">0</span></td>
             <td>Terneras:<span id="terneras">0</span></td>
-        </tr>
+        </tr> -->
     </tfoot>
 </table>     
 @include('posts.totales') 

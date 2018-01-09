@@ -5,12 +5,11 @@
   | Web Routes
   |--------------------------------------------------------------------------
   |
-  | Here is where you can register web routes for your application. These
+  | These
   | routes are loaded by the RouteServiceProvider within a group which
   | contains the "web" middleware group. Now create something great!
   |
  */
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +21,8 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/productor', 'HeadguiaController@index');
+
+Route::get('getTipoAnimal', 'HeadguiaController@getTipoAnimal');
 
 Route::get('formato', 'HeadguiaController@formatGuia');
 
@@ -40,8 +41,3 @@ Route::get('getCantidadAnimales', 'HeadguiaController@getCantidadAnimales');
 Route::get('getCedulaTrasportista', 'HeadguiaController@getCedulaTrasportista');
 
 Auth::routes();
-
-Route::get('/testeandop', function () {
-
-    return view('posts.productor');
-});

@@ -1,5 +1,7 @@
 
 $(document).ready(function () {
+    $('#numeroGuia').focus();
+
     $('#numeroGuia').change(function (e) {
         e.preventDefault();
         $('#alertGuia').text('');
@@ -34,7 +36,7 @@ $(document).ready(function () {
                     $('#nombreProductor').text("Ivan Francisco Sequeira Mesen");
                     $('#fincaProductor').val("123456");
                     $('#codStblProductor').val("123-123456");
-                    $('#cedulaProductor').val("0123456789");                              
+                    $('#cedulaProductor').val("0123456789");
                     $('#codigoTransportista').focus();
                 }
             });
@@ -51,7 +53,7 @@ $(document).ready(function () {
                 success: function (result) {
                     $('#numeroSub').show().text(result.codigoSubasta);
                     $('#codigoTransportista').val(result.codigoProductor);
-                    $('#numeroAnimal').text( "0"+(parseInt(result.numeroAnimal) + 1));
+                    $('#numeroAnimal').text("0" + (parseInt(result.numeroAnimal) + 1));
                     $('#tipoSubasta').focus();
                     $('#nombreTransportista').text("Pedro Juan Robles Sibaja");
                     $('#placaTransportista').val("123-123456");
@@ -172,13 +174,8 @@ function insertaAnimal() {
 }
 
 function validaTipo(tipo) {
-
     var tipoSena = tiposSenasa(parseInt(tipo.val()));
 
-    if (tipo.val().length < 2) {
-        alert('Formato Invalido');
-        tipo.val('').focus();
-    }
     if (parseInt(tipo.val()) < 1 || parseInt(tipo.val()) > 12) {
         alert('Codigo Invalido');
         tipo.val('').focus();
@@ -187,25 +184,11 @@ function validaTipo(tipo) {
 }
 
 function validaColor(color) {
-    if (color.val().length < 2) {
-        alert('Formato Invalido');
-        color.val('').focus();
-    }
+
     if (parseInt(color.val()) < 1 || parseInt(color.val()) > 9) {
         alert('Codigo Invalido');
         color.val('').focus();
     }
-}
-
-function removeTableRow(jQtable) {
-    jQtable.each(function () {
-        if ($('tbody', this).length > 0) {
-            $('tbody tr:last', this).remove();
-            $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text()) - 1));
-        } else {
-            $('tr:last', this).remove();
-        }
-    });
 }
 
 function totalAnimales(numero) {
@@ -252,6 +235,17 @@ function tiposSenasa(numero) {
         tipo = "Ternero";
     }
     return tipo;
+}
+
+function removeTableRow(jQtable) {
+    jQtable.each(function () {
+        if ($('tbody', this).length > 0) {
+            $('tbody tr:last', this).remove();
+            $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text()) - 1));
+        } else {
+            $('tr:last', this).remove();
+        }
+    });
 }
 
 

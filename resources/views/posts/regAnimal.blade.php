@@ -5,8 +5,10 @@
 @endsection
 @section('cuerpoAnimal')
 <form class="form-horizontal col-sm-12 " style="padding-top:5px">
-    <div class="col-sm-5" style="padding-left: 7px;padding-right: 7px">
-        <div class="form-group" style="margin-bottom: 7px">
+   
+    
+    <div class="col-sm-5 form-group" style="padding-left: 7px;padding-right: 7px;margin-bottom: 7px ">               
+        <div class="form-group" style="margin-bottom: 7px">            
             <label for="numeroAnimal" class="col-sm-4">#Animal:</label>                   
             <div class="col-sm-8"  style="text-align: center;">                                                                        
                 <h3 style="margin: 2px"><span class="label label-default" id="numeroAnimal" name="numeroAnimal"></span></h3>
@@ -17,8 +19,8 @@
             <div class="col-sm-8">                         
                 <input type="text" name="code" id="tipoSubasta" class="form-control" placeholder="Tipo Subasta" > 
             </div>
-        </div>
-    </div>
+        </div>     
+    </div>               
     <div class="col-sm-4" >
         <div class="form-group" style="margin-bottom: 7px">
             <label for="tipoSenasa" class="col-sm-6">SENASA:</label>                   

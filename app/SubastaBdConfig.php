@@ -58,11 +58,17 @@ class SubastaBdConfig {
     }
 
     public function ultAnimal() {
-
-        $sql = "Select max(id) as topId from Conse_Boleta";
+        $sql = "SELECT max(id) as topId from Conse_Boleta";
         $resultado = $this->conexion->selectOne($sql);
         $num = $resultado->topId + 1;
         return ("0000000" . $num);
     }
 
+    public function tipoAnimal() {
+        return $this->consulta("SELECT * FROM Tipo_Animal");
+    }
+
+    public function ColorAnimal() {
+        return $this->consulta("SELECT * FROM Color_Animal");
+    }
 }

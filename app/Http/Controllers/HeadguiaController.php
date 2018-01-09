@@ -41,7 +41,7 @@ class HeadguiaController extends Controller {
 //  print_r($data);
 //         
 
-        return view('posts.productor')->with('data', $data);
+        return view('posts.mainContainer')->with('data', $data);
     }
 
     public function guiaExiste(Request $request) {
@@ -70,9 +70,7 @@ class HeadguiaController extends Controller {
     public function formatTransportista(Request $request) {
 
         $respuesta = substr_replace($request['codigoTransportista'], '-', 6, -11);
-
         $numAnimales = $this->getCantidadAnimales();
-
         $transportista = $this->getCedulaTrasportista($request);
 
         $data = array(
@@ -84,7 +82,6 @@ class HeadguiaController extends Controller {
     }
 
     public function formatProductor(Request $request) {
-
         $productor = $this->getCedulaProductor($request);
         $respuesta = substr_replace($request['codigoProductor'], '-', 6, -15);
 
@@ -117,6 +114,14 @@ class HeadguiaController extends Controller {
 
     public function getCantidadAnimales() {
         return $this->conexion->cCantAnimales();
+    }
+
+    public function getTipoAnimal() {
+        return $this->conexion->tipoAnimal();
+    }
+
+    public function getColorAnimal() {
+        return $this->conexion->ColorAnimal();
     }
 
     //. $request['cedula']
