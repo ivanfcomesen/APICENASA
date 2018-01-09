@@ -25,7 +25,7 @@ Route::get('/productor', 'HeadguiaController@index');
 
 Route::get('formato', 'HeadguiaController@formatGuia');
 
-Route::get('consulSubActual', 'HeadguiaController@consulSubActual');
+Route::get('getSubastaActual', 'HeadguiaController@getSubastaActual');
 
 Route::get('formatoProductor', 'HeadguiaController@formatProductor');
 
@@ -33,11 +33,11 @@ Route::get('formatoTransportista', 'HeadguiaController@formatTransportista');
 
 Route::get('talonario', 'HeadguiaController@guiaExiste');
 
-Route::get('consultarCedulaProductor', 'HeadguiaController@consultCedProdDB');
+Route::get('getCedulaProductor', 'HeadguiaController@getCedulaProductor');
 
-Route::get('consultaCantidadAnimales', 'HeadguiaController@consulCantAnimales');
+Route::get('getCantidadAnimales', 'HeadguiaController@getCantidadAnimales');
 
-Route::get('consultarCedulaTransportista', 'HeadguiaController@consultCedTranspDB');
+Route::get('getCedulaTrasportista', 'HeadguiaController@getCedulaTrasportista');
 
 Auth::routes();
 

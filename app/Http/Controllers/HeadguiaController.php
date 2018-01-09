@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use App\EndPointsSENASA\Cliente;
 use App\SubastaBdConfig;
 use Illuminate\Http\Request;
@@ -11,7 +10,7 @@ use Illuminate\Http\Request;
 class HeadguiaController extends Controller {
 
     protected $cliente;
-    public $conexion;
+    protected $conexion;
 
     public function __construct(Cliente $cliente, SubastaBdConfig $conexion) {
         $this->cliente = $cliente;
@@ -30,7 +29,7 @@ class HeadguiaController extends Controller {
 //  $nameSubasta = 'SUBASTA CAMARA DE GANADEROS PZ';
 // $code = '119-008157'; //NO HAY DATA VALOR DE CODIGO NULL.
 
-        $cantAnimales = $this->consulCantAnimales();
+        $cantAnimales = $this->getCantidadAnimales();
         $data = array(
             'code' => '119-008157',
             'nameSubata' => 'SUBASTA CAMARA DE GANADEROS PZ',
@@ -55,105 +54,72 @@ class HeadguiaController extends Controller {
 //    $this->insert();
 //sacar el maximo id he imprimirlo en el campo boleta
 // }
-        //strlen($this->formatGuia($request['guia'])
+//strlen($this->formatGuia($request['guia'])
         $data = array(
             'guia' => $this->formatGuia($request['guia']),
-            'boleta' => $this->maxId());
+            'boleta' => $this->ultimoAnimal());
         return $data;
     }
 
     public function formatGuia($str) {
-        //$request['cedula']     
+//$request['cedula']     
         $respuesta = substr_replace($str, '-', 6, -7);
         return $respuesta;
     }
 
     public function formatTransportista(Request $request) {
-        //$request['cedula']            
+
         $respuesta = substr_replace($request['codigoTransportista'], '-', 6, -11);
 
-        $numAnimales = $this->consulCantAnimales();
+        $numAnimales = $this->getCantidadAnimales();
 
-        $transportista = $this->consultCedTranspDB($request);
+        $transportista = $this->getCedulaTrasportista($request);
 
         $data = array(
             'codigoProductor' => $respuesta,
             'numeroAnimal' => $numAnimales[0]['cantAnimales'],
             'codigoSubasta' => $transportista[0]['codigoTransportista']);
-        //$resultado[0]['subastaActual'])
 
         return $data;
     }
 
     public function formatProductor(Request $request) {
-        //$request['cedula']
 
-        $productor = $this->consultCedProdDB($request);
+        $productor = $this->getCedulaProductor($request);
         $respuesta = substr_replace($request['codigoProductor'], '-', 6, -15);
 
         $data = array(
             'codigoProductor' => $respuesta,
             'codigoSubasta' => $productor[0]['subasta']);
-
         return $data;
-        // return $respuesta;
     }
 
-    public function maxId() {
-        $conn = DB::connection("odbc");
-        $sql = "Select max(id) as topId from Conse_Boleta";
-        $resultado = $conn->selectOne($sql);
-        $num = $resultado->topId + 1;
-        return ("0000000" . $num);
-    }
-
-    public function insert() {
-        $conn = DB::connection("odbc");
-        $sql = "INSERT INTO Conse_Boleta (Consecutivo)" . "VALUES('" . $this->maxId() . "')";
-//echo $sql;
-        $conn->insert($sql);
-//    return view('posts.productor');
+    public function ultimoAnimal() {
+        return $this->conexion->ultAnimal();
     }
 
     public function update() {
-
-        $conn = DB::connection("odbc");
-        $sql = "UPDATE Conse_Boleta";
-        $resultado = $conn->update($sql);
-        var_dump($resultado);
-        return view('posts.productor');
+        //evaluar result de update
+        return $this->conexion->update("UPDATE Conse_Boleta");
     }
 
-    public function consultCedProdDB(Request $request) {
-        //. $request['cedula']
-        $conn = DB::connection("odbc");
-        $sql = "SELECT Nom_Cliente AS nombreProductor,Cod_Cliente as subasta, Cedula_Cliente AS cedulaProductor, Direccion AS direccion "
-                . "FROM  Cliente WHERE (Cedula_Cliente = '" . "0601880814" . "')";
-        $resultado = json_encode($conn->select($sql));
-
-        return json_decode($resultado, true); //($resultado[0]['nombreProductor']);
+    public function getCedulaProductor(Request $request) {
+        return $this->conexion->cCedProductor($request['cedula']);
     }
 
-    public function consultCedTranspDB(Request $request) {
-        //. $request['cedula']
-        $conn = DB::connection("odbc");
-        $sql = "SELECT Cod_Transport AS codigoTransportista, Nombre_Transport as nombreTransporte "
-                . "FROM  Transportista WHERE (Ced_Juridica = '" . "0601880815" . "')";
-        $resultado = json_encode($conn->select($sql));
-        return json_decode($resultado, true); //($resultado[0]['nombreProductor']);
+    public function getCedulaTrasportista(Request $request) {
+        return $this->conexion->cCedTransporte($request['cedula']);
     }
 
-    public function consulSubActual() {
-        //. $request['cedula']
-        return $this->conexion->consulta("SELECT Subas_Actual AS subastaActual "
-                        . "FROM Compania WHERE (Ced_Juridica = '" . "3-002-071034" . "')");
+    public function getSubastaActual() {
+        return $this->conexion->cSubActual();
     }
 
-    public function consulCantAnimales() {
-        //. $request['cedula']         
-        $data = $this->consulSubActual();
-        return $this->conexion->consulta("SELECT Cant_Animales AS cantAnimales "
-                        . "FROM Reg_Subasta WHERE (Cod_Subasta = '" . $data[0]['subastaActual'] . "')");
+    public function getCantidadAnimales() {
+        return $this->conexion->cCantAnimales();
     }
 
+    //. $request['cedula']
+    //($resultado[0]['nombreProductor']);
+    //$resultado[0]['subastaActual'])
 }
