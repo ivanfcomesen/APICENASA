@@ -5,16 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\EndPointsSENASA\Cliente;
 use App\SubastaBdConfig;
+use App\Productor;
+use App\Transportista;
 use Illuminate\Http\Request;
 
 class HeadguiaController extends Controller {
 
     protected $cliente;
     protected $conexion;
+    protected $productor;
+    protected $transportista;
 
-    public function __construct(Cliente $cliente, SubastaBdConfig $conexion) {
+    public function __construct(Cliente $cliente, SubastaBdConfig $conexion, Productor $productor, Transportista $transportista) {
         $this->cliente = $cliente;
         $this->conexion = $conexion;
+        $this->productor = $productor;
+        $this->transportista = $transportista;
     }
 
     public function index() {
@@ -33,14 +39,11 @@ class HeadguiaController extends Controller {
         $data = array(
             'code' => '119-008157',
             'nameSubata' => 'SUBASTA CAMARA DE GANADEROS PZ',
-            'cantAnimales' => ($cantAnimales[0]['cantAnimales'])
+            'cantAnimales' => ($cantAnimales[0]['cantAnimales']),
+            'tablaColores' => $this->getColorAnimal(),
+            'tablaTipos' => $this->getTipoAnimal()
         );
-//  } else {
-//      return "Problemas con el login";
-//  }
-//  print_r($data);
-//         
-
+        //return $data;
         return view('posts.mainContainer')->with('data', $data);
     }
 
@@ -67,28 +70,14 @@ class HeadguiaController extends Controller {
         return $respuesta;
     }
 
-    public function formatTransportista(Request $request) {
-
-        $respuesta = substr_replace($request['codigoTransportista'], '-', 6, -11);
+    public function formatoTransportista(Request $request) {
         $numAnimales = $this->getCantidadAnimales();
-        $transportista = $this->getCedulaTrasportista($request);
-
-        $data = array(
-            'codigoProductor' => $respuesta,
-            'numeroAnimal' => $numAnimales[0]['cantAnimales'],
-            'codigoSubasta' => $transportista[0]['codigoTransportista']);
-
-        return $data;
+        return $this->transportista->formatTransportista($request['codigoTransportista'], $request['cedula'], $numAnimales[0]['cantAnimales']);
     }
 
-    public function formatProductor(Request $request) {
-        $productor = $this->getCedulaProductor($request);
-        $respuesta = substr_replace($request['codigoProductor'], '-', 6, -15);
+    public function formatoProductor(Request $request) {
 
-        $data = array(
-            'codigoProductor' => $respuesta,
-            'codigoSubasta' => $productor[0]['subasta']);
-        return $data;
+        return $this->productor->formatProductor($request['cedula'], $request['codigoProductor']);
     }
 
     public function ultimoAnimal() {
@@ -100,13 +89,12 @@ class HeadguiaController extends Controller {
         return $this->conexion->update("UPDATE Conse_Boleta");
     }
 
-    public function getCedulaProductor(Request $request) {
-        return $this->conexion->cCedProductor($request['cedula']);
-    }
-
-    public function getCedulaTrasportista(Request $request) {
+   /* public function getCedulaTrasportista(Request $request) {
         return $this->conexion->cCedTransporte($request['cedula']);
     }
+       public function getCedulaProductor(Request $request) {
+        return $this->conexion->cCedTransporte($request['cedula']);
+    }*/
 
     public function getSubastaActual() {
         return $this->conexion->cSubActual();

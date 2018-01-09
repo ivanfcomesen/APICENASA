@@ -22,15 +22,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/productor', 'HeadguiaController@index');
 
+Route::get('index', 'HeadguiaController@index');
+
 Route::get('getTipoAnimal', 'HeadguiaController@getTipoAnimal');
 
 Route::get('formato', 'HeadguiaController@formatGuia');
 
 Route::get('getSubastaActual', 'HeadguiaController@getSubastaActual');
 
-Route::get('formatoProductor', 'HeadguiaController@formatProductor');
+Route::get('formatoProductor', 'HeadguiaController@formatoProductor');
 
-Route::get('formatoTransportista', 'HeadguiaController@formatTransportista');
+Route::get('formatoTransportista', 'HeadguiaController@formatoTransportista');
 
 Route::get('talonario', 'HeadguiaController@guiaExiste');
 

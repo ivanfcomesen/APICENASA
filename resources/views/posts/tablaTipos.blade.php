@@ -10,56 +10,13 @@
             <th>Descripcion</th>  
         </tr>
     </thead>
-    <tbody style="background-color: whitesmoke">
+    <tbody style="background-color: whitesmoke">       
+        @foreach ($data['tablaTipos'] as $tipo)
         <tr>
-            <td>01</td>
-            <td>Toro</td>
+            <td>{{ $tipo['Cod_Animal'] }}</td>
+            <td>{{ $tipo['Descripcion'] }}</td>
         </tr>
-        <tr>
-            <td>02</td>
-            <td>Vaca</td>
-        </tr>
-        <tr>
-            <td>03</td>
-            <td>Camello</td>
-        </tr>
-        <tr>
-            <td>04</td>
-            <td>Toro</td>
-        </tr>
-        <tr>
-            <td>05</td>
-            <td>Vaca</td>
-        </tr>
-        <tr>
-            <td>06</td>
-            <td>Camello</td>
-        </tr>
-        <tr>
-            <td>07</td>
-            <td>Toro</td>
-        </tr>
-        <tr>
-            <td>08</td>
-            <td>Vaca</td>
-        </tr>
-        <tr>
-            <td>09</td>
-            <td>Camello</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>Vaca</td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>Camello</td>
-        </tr>
-        <tr>
-            <td>12</td>
-            <td>Camello</td>
-        </tr>
-
+        @endforeach    
     </tbody>
 </table>
 <table id="tablaColores" style="width: 100%;background-color:whitesmoke " >
@@ -73,43 +30,12 @@
         </tr>
     </thead>
     <tbody>
+        @foreach ($data['tablaColores'] as $tipo)
         <tr>
-            <td>01</td>
-            <td>Amarillo</td>
+            <td>{{ $tipo['Cod_Color'] }}</td>
+            <td>{{ $tipo['Descripcion'] }}</td>
         </tr>
-        <tr>
-            <td>02</td>
-            <td>Verde</td>
-        </tr>
-        <tr>
-            <td>03</td>
-            <td>Rojo</td>
-        </tr>
-        <tr>
-            <td>04</td>
-            <td>Amarillo</td>
-        </tr>
-        <tr>
-            <td>05</td>
-            <td>Verde</td>
-        </tr>
-        <tr>
-            <td>06</td>
-            <td>Rojo</td>
-        </tr>
-        <tr>
-            <td>07</td>
-            <td>Amarillo</td>
-        </tr>
-        <tr>
-            <td>08</td>
-            <td>Verde</td>
-        </tr>
-        <tr>
-            <td>09</td>
-            <td>Rojo</td>
-        </tr>
-
+        @endforeach    
     </tbody>
 </table>    
 @endsection
