@@ -6,7 +6,6 @@ use App\SubastaBdConfig;
 
 class Productor {
 
-    protected $productor;
     protected $conexion;
 
     public function __construct(SubastaBdConfig $conexion) {
@@ -40,5 +39,4 @@ class Productor {
         }
         return true;
     }
-
 }

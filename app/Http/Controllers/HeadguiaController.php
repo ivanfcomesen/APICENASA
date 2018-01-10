@@ -7,6 +7,8 @@ use App\EndPointsSENASA\Cliente;
 use App\SubastaBdConfig;
 use App\Productor;
 use App\Transportista;
+use App\Animal;
+use App\Guia;
 use Illuminate\Http\Request;
 
 class HeadguiaController extends Controller {
@@ -15,24 +17,27 @@ class HeadguiaController extends Controller {
     protected $conexion;
     protected $productor;
     protected $transportista;
+    protected $animal;
+    protected $guia;
 
-    public function __construct(Cliente $cliente, SubastaBdConfig $conexion, Productor $productor, Transportista $transportista) {
+    public function __construct(Cliente $cliente, SubastaBdConfig $conexion, Productor $productor, Transportista $transportista, Animal $animal, Guia $guia) {
         $this->cliente = $cliente;
         $this->conexion = $conexion;
         $this->productor = $productor;
         $this->transportista = $transportista;
+        $this->animal = $animal;
+        $this->guia = $guia;
     }
 
     public function index() {
 
-//  $login = $this->cliente->login();
-// if ($login['login_result'] == true) {         
+//  $login = $this->cliente->   ();
+//  if ($login['login_result'] == true) {         
 //  $data = $this->cliente->codeEstablishment();
-//    dd($data);
-//     $code = $data['codigo']; //NO HAY DATA VALOR DE CODIGO NULL.
+//  dd($data);
+//  $code = $data['codigo']; //NO HAY DATA VALOR DE CODIGO NULL.
 //  $name = $this->cliente->nameEstablishment($code);
-//   $nameSubasta = $name['nombre'];
-//  $nameSubasta = 'SUBASTA CAMARA DE GANADEROS PZ';
+//  $nameSubasta = $name['nombre'];
 // $code = '119-008157'; //NO HAY DATA VALOR DE CODIGO NULL.
 
         $cantAnimales = $this->getCantidadAnimales();
@@ -79,6 +84,10 @@ class HeadguiaController extends Controller {
         }
     }
 
+    public function getSubastaActual() {
+        return $this->conexion->cSubActual();
+    }
+
     public function formatoTransportista(Request $request) {
         $numAnimales = $this->getCantidadAnimales();
         return $this->transportista->formatoTransportista($request['codigoTransportista'], $request['cedula'], $numAnimales[0]['cantAnimales']);
@@ -89,24 +98,20 @@ class HeadguiaController extends Controller {
         return $this->productor->formatProductor('cedula', $request['codigoProductor']);
     }
 
-    public function ultimoAnimal() {
-        return $this->conexion->ultAnimal();
-    }
-
-    public function getSubastaActual() {
-        return $this->conexion->cSubActual();
+    public function getUltimoAnimal() {
+        return $this->animal->ultimoAnimal();
     }
 
     public function getCantidadAnimales() {
-        return $this->conexion->cCantAnimales();
+        return $this->animal->CantAnimales();
     }
 
     public function getTipoAnimal() {
-        return $this->conexion->tipoAnimal();
+        return $this->animal->tipoAnimal();
     }
 
     public function getColorAnimal() {
-        return $this->conexion->ColorAnimal();
+        return $this->animal->ColorAnimal();
     }
 
 }

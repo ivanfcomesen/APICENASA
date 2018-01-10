@@ -21,6 +21,7 @@ $(document).ready(function () {
                         $('#alertGuia').show().text('Nuevo numero de boleta.');
                         $('#talonario').show().text(result.boleta);
                         $('#numeroGuia').val(result.guia);
+                        $('#codigoProductor').focus();
                     }
                 }
             });
@@ -120,15 +121,7 @@ function guiaEmpty() {
     }
     return flag;
 }
-function validaFormatoGuia(guia) {
-    if (guia.val().length < 14 || guia.val().length > 14) {
-        $('#talonario').hide();
-        $('#alertGuia').show().text('Formato invalido.');
-        guia.val('').focus();
-        return false;
-    }
-    return true;
-}
+
 function insertaAnimal() {
 
     if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').text() === ''))
