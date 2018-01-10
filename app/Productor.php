@@ -13,18 +13,32 @@ class Productor {
         $this->conexion = $conexion;
     }
 
-    public function formatProductor($cedula,$codigoProducto) {
-        $productor = $this->CedulaProductor($cedula);
-        $respuesta = substr_replace($codigoProducto, '-', 6, -15);
+    public function formatProductor($cedula, $codigoProductor) {
 
-        $data = array(
-            'codigoProductor' => $respuesta,
-            'codigoSubasta' => $productor[0]['subasta']);
-        return $data;
+        if ($this->validaFormatoProductor($codigoProductor)) {
+            $productor = $this->CedulaProductor($cedula);
+            $respuesta = substr_replace($codigoProductor, '-', 6, -15);
+
+            $data = array(
+                'codigoProductor' => $respuesta,
+                'codigoSubasta' => $productor[0]['subasta']);
+
+            return $data;
+        } else {
+            return 'Formato Invalido!';
+        }
     }
 
     public function CedulaProductor($cedula) {
         return $this->conexion->cCedProductor($cedula);
+    }
+
+    public function validaFormatoProductor($codigoProductor) {
+        $size = strlen($codigoProductor);
+        if (($size < 22) or ( $size > 22)) {
+            return false;
+        }
+        return true;
     }
 
 }

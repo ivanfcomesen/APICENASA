@@ -36,10 +36,8 @@ Route::get('formatoTransportista', 'HeadguiaController@formatoTransportista');
 
 Route::get('talonario', 'HeadguiaController@guiaExiste');
 
-Route::get('getCedulaProductor', 'HeadguiaController@getCedulaProductor');
-
 Route::get('getCantidadAnimales', 'HeadguiaController@getCantidadAnimales');
 
-Route::get('getCedulaTrasportista', 'HeadguiaController@getCedulaTrasportista');
+
 
 Auth::routes();

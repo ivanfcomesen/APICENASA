@@ -1,7 +1,6 @@
 
 $(document).ready(function () {
     $('#numeroGuia').focus();
-
     $('#numeroGuia').change(function (e) {
         e.preventDefault();
         $('#alertGuia').text('');
@@ -20,48 +19,63 @@ $(document).ready(function () {
             });
         }
     });
-    $('#codigoProductor').change(function (e) {
-        e.preventDefault();
-        var codigoProductor = $('#codigoProductor');
+    $('#codigoProductor').keypress(function (e) {
+        if (e.which == 13) {
+            var codigoProductor = $('#codigoProductor');
 
-        if (validaFormatoProductor(codigoProductor) === true) {
             $.ajax({
                 url: 'formatoProductor',
                 data: {codigoProductor: codigoProductor.val()},
                 type: "get",
                 success: function (result) {
 
-                    $('#numeroSubastaProductor').show().text(result.codigoSubasta);
-                    $('#codigoProductor').val(result.codigoProductor);
-                    $('#nombreProductor').text("Ivan Francisco Sequeira Mesen");
-                    $('#fincaProductor').val("123456");
-                    $('#codStblProductor').val("123-123456");
-                    $('#cedulaProductor').val("0123456789");
-                    $('#codigoTransportista').focus();
+                    if (result === 'Formato Invalido!') {
+                        $('#numeroSubastaProductor').hide();
+                        $('#numeroSubastaProductor').show().text('Error');
+                        codigoProductor.val('').focus();
+                    } else {
+                        $('#numeroSubastaProductor').show().text(result.codigoSubasta);
+                        $('#codigoProductor').val(result.codigoProductor);
+                        $('#nombreProductor').text("Ivan Francisco Sequeira Mesen");
+                        $('#fincaProductor').val("123456");
+                        $('#codStblProductor').val("123-123456");
+                        $('#cedulaProductor').val("0123456789");
+                        $('#codigoTransportista').focus();
+                    }
                 }
             });
         }
+        // }
     });
-    $('#codigoTransportista').change(function (e) {
-        e.preventDefault();
-        var codigoTransportista = $('#codigoTransportista');
-        if (validaFormatoTransportista(codigoTransportista) === true) {
+    $('#codigoTransportista').keypress(function (e) {
+        if (e.which == 13) {
+
+            var codigoTransportista = $('#codigoTransportista');
+            //    if (validaFormatoTransportista(codigoTransportista) === true) {
             $.ajax({
                 url: 'formatoTransportista',
                 data: {codigoTransportista: codigoTransportista.val()},
                 type: "get",
                 success: function (result) {
-                    $('#numeroSub').show().text(result.codigoSubasta);
-                    $('#codigoTransportista').val(result.codigoProductor);
-                    $('#numeroAnimal').text("0" + (parseInt(result.numeroAnimal) + 1));
-                    $('#tipoSubasta').focus();
-                    $('#nombreTransportista').text("Pedro Juan Robles Sibaja");
-                    $('#placaTransportista').val("123-123456");
-                    $('#cedulaTransportista').val("0123456789");
+
+                    if (result === 'Formato Invalido!') {
+                        $('#numeroSub').hide();
+                        $('#numeroSub').show().text('Error.');
+                        codigoTransportista.val('').focus();
+                    } else {
+                        $('#numeroSub').show().text(result.codigoSubasta);
+                        $('#codigoTransportista').val(result.codigoProductor);
+                        $('#numeroAnimal').text("0" + (parseInt(result.numeroAnimal) + 1));
+                        $('#tipoSubasta').focus();
+                        $('#nombreTransportista').text("Pedro Juan Robles Sibaja");
+                        $('#placaTransportista').val("123-123456");
+                        $('#cedulaTransportista').val("0123456789");
+                    }
                     //$('#numeroSubasta').text(result[0].subasta);
                 }
             });
         }
+        //  }
     });
     $('#agregarFila').click(function (e) {
         e.preventDefault();
@@ -83,18 +97,14 @@ $(document).ready(function () {
     });
     $('#color').change(function (e) {
         validaColor($('#color'));
-
     });
-
     $('#quitarFila').click(function (e) {
         //$('#tablaAnimales tr:last').remove();
         removeTableRow($('#tablaAnimales'));
     });
-
 });
 
 function guiaEmpty() {
-
     var flag = false;
     var guia = $('#numeroGuia');
     if (guia.val() === '') {
@@ -114,41 +124,8 @@ function validaFormatoGuia(guia) {
     }
     return true;
 }
-function validaFormatoProductor(codigoProductor) {
 
-    var flag = true;
-
-    if (guiaEmpty() === true) {
-        codigoProductor.val('');
-        flag = false;
-    } else {
-        if (codigoProductor.val().length < 22 || codigoProductor.val().length > 22) {
-            $('#numeroSubastaProductor').hide();
-            $('#numeroSubastaProductor').show().text('Error');
-            codigoProductor.val('').focus();
-            flag = false;
-        }
-    }
-    return flag;
-}
-function validaFormatoTransportista(codigoTransportista) {
-
-    var flag = true;
-    if (guiaEmpty() === true) {
-        codigoTransportista.val('');
-        flag = false;
-    } else {
-        if (codigoTransportista.val().length < 18 || codigoTransportista.val().length > 18) {
-            $('#numeroSub').hide();
-            $('#numeroSub').show().text('Error.');
-            codigoTransportista.val('').focus();
-            flag = false;
-        }
-    }
-    return flag;
-}
 function insertaAnimal() {
-
 
     if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').text() === ''))
     {
@@ -211,7 +188,6 @@ function totalAnimales(numero) {
     if (numero === 6) {
         $('#terneras').text(parseInt($('#terneras').text()) + 1);
     }
-
 }
 
 function tiposSenasa(numero) {

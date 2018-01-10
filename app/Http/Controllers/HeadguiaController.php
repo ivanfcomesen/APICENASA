@@ -72,29 +72,17 @@ class HeadguiaController extends Controller {
 
     public function formatoTransportista(Request $request) {
         $numAnimales = $this->getCantidadAnimales();
-        return $this->transportista->formatTransportista($request['codigoTransportista'], $request['cedula'], $numAnimales[0]['cantAnimales']);
+        return $this->transportista->formatoTransportista($request['codigoTransportista'], $request['cedula'], $numAnimales[0]['cantAnimales']);
     }
 
     public function formatoProductor(Request $request) {
 
-        return $this->productor->formatProductor($request['cedula'], $request['codigoProductor']);
+        return $this->productor->formatProductor('cedula', $request['codigoProductor']);
     }
 
     public function ultimoAnimal() {
         return $this->conexion->ultAnimal();
     }
-
-    public function update() {
-        //evaluar result de update
-        return $this->conexion->update("UPDATE Conse_Boleta");
-    }
-
-   /* public function getCedulaTrasportista(Request $request) {
-        return $this->conexion->cCedTransporte($request['cedula']);
-    }
-       public function getCedulaProductor(Request $request) {
-        return $this->conexion->cCedTransporte($request['cedula']);
-    }*/
 
     public function getSubastaActual() {
         return $this->conexion->cSubActual();
@@ -112,7 +100,4 @@ class HeadguiaController extends Controller {
         return $this->conexion->ColorAnimal();
     }
 
-    //. $request['cedula']
-    //($resultado[0]['nombreProductor']);
-    //$resultado[0]['subastaActual'])
 }

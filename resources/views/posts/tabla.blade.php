@@ -8,7 +8,7 @@
             <th style=" width:100px;">Color</th>
         </tr>
     </thead>
-    <tbody  style="display: block; height: 200px; overflow-y: auto;overflow-x: hidden;">
+    <tbody  style="display: block; height: 275px; overflow-y: auto;overflow-x: hidden;">
 
     </tbody>
 
