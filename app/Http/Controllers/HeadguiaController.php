@@ -58,16 +58,25 @@ class HeadguiaController extends Controller {
 //sacar el maximo id he imprimirlo en el campo boleta
 // }
 //strlen($this->formatGuia($request['guia'])
-        $data = array(
-            'guia' => $this->formatGuia($request['guia']),
-            'boleta' => $this->ultimoAnimal());
-        return $data;
+        $guia = $this->formatGuia($request['guia']);
+        if ($guia != false) {
+            $data = array(
+                'guia' => $guia,
+                'boleta' => $this->ultimoAnimal());
+            return $data;
+        } else {
+            return 'Formato Invalido!';
+        }
     }
 
-    public function formatGuia($str) {
-//$request['cedula']     
-        $respuesta = substr_replace($str, '-', 6, -7);
-        return $respuesta;
+    public function formatGuia($guia) {
+//$request['cedula']
+        if (((strlen($guia)) < 14) or ( strlen($guia) > 14)) {
+            return false;
+        } else {
+            $respuesta = substr_replace($guia, '-', 6, -7);
+            return $respuesta;
+        }
     }
 
     public function formatoTransportista(Request $request) {

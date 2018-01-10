@@ -1,23 +1,31 @@
 
 $(document).ready(function () {
-    $('#numeroGuia').focus();
-    $('#numeroGuia').change(function (e) {
-        e.preventDefault();
-        $('#alertGuia').text('');
-        var guia = $('#numeroGuia');
-        if (validaFormatoGuia(guia) === true) {
+    $('#numeroGuia').keypress(function (e) {
+        if (e.which == 13) {
+            e.preventDefault();
+            $('#alertGuia').text('');
+            var guia = $('#numeroGuia');
+            //   if (validaFormatoGuia(guia) === true) {
             $.ajax({
                 url: 'talonario',
                 data: {guia: guia.val()},
                 type: "get",
                 //    dataType: "json",
                 success: function (result) {
-                    $('#alertGuia').show().text('Nuevo numero de boleta.');
-                    $('#talonario').show().text(result.boleta);
-                    $('#numeroGuia').val(result.guia);
+
+                    if (result === 'Formato Invalido!') {
+                        $('#talonario').hide();
+                        $('#alertGuia').show().text('Formato invalido.');
+                        guia.val('').focus();
+                    } else {
+                        $('#alertGuia').show().text('Nuevo numero de boleta.');
+                        $('#talonario').show().text(result.boleta);
+                        $('#numeroGuia').val(result.guia);
+                    }
                 }
             });
         }
+        //   }
     });
     $('#codigoProductor').keypress(function (e) {
         if (e.which == 13) {
@@ -91,7 +99,6 @@ $(document).ready(function () {
             }
         });
     });
-
     $('#tipoSubasta').change(function (e) {
         validaTipo($('#tipoSubasta'));
     });
@@ -103,7 +110,6 @@ $(document).ready(function () {
         removeTableRow($('#tablaAnimales'));
     });
 });
-
 function guiaEmpty() {
     var flag = false;
     var guia = $('#numeroGuia');
@@ -114,7 +120,6 @@ function guiaEmpty() {
     }
     return flag;
 }
-
 function validaFormatoGuia(guia) {
     if (guia.val().length < 14 || guia.val().length > 14) {
         $('#talonario').hide();
@@ -124,7 +129,6 @@ function validaFormatoGuia(guia) {
     }
     return true;
 }
-
 function insertaAnimal() {
 
     if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').text() === ''))
@@ -149,7 +153,6 @@ function insertaAnimal() {
         $('#tipoSubasta').val('').focus();
     }
 }
-
 function validaTipo(tipo) {
     var tipoSena = tiposSenasa(parseInt(tipo.val()));
 
@@ -159,7 +162,6 @@ function validaTipo(tipo) {
     }
     $('#tipoSenasa').text(tipoSena);
 }
-
 function validaColor(color) {
 
     if (parseInt(color.val()) < 1 || parseInt(color.val()) > 9) {
@@ -167,7 +169,6 @@ function validaColor(color) {
         color.val('').focus();
     }
 }
-
 function totalAnimales(numero) {
 
     if (numero === 1) {
@@ -189,7 +190,6 @@ function totalAnimales(numero) {
         $('#terneras').text(parseInt($('#terneras').text()) + 1);
     }
 }
-
 function tiposSenasa(numero) {
     var tipo = 'indefinido';
     if (numero === 1) {
@@ -212,7 +212,6 @@ function tiposSenasa(numero) {
     }
     return tipo;
 }
-
 function removeTableRow(jQtable) {
     jQtable.each(function () {
         if ($('tbody', this).length > 0) {

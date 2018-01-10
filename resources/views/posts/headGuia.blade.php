@@ -12,12 +12,12 @@
         <div class="form-group" style="margin-bottom: 5px"> 
             <label for="numGuia" class="control-label col-sm-4"># Guia:</label>
             <div class="col-sm-8">   
-                <input type="text" name="cedProductor" id="numeroGuia"class="form-control" placeholder="Numero de guia.">   
+                <input type="text" name="numGuia" id="numeroGuia"class="form-control" placeholder="Numero de guia.">   
             </div>
         </div>   
     </form>        
     <div class="col-sm-4"  style="padding: 1px;text-align: right;">
-        <label for="cedProductor"  style="margin-bottom:1px" class="control-label col-sm-4" >Numero Talonario</label>            
+        <label style="margin-bottom:1px" class="control-label col-sm-4" >Numero Talonario</label>            
         <h4 style="margin: 1px;margin-top: 8px"><span class="label label-default" id="talonario"></span></h4> 
 
         <h4 style="margin: 1px"><span class="label label-info" id="alertGuia"></span></h4> 
