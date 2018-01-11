@@ -2,14 +2,17 @@
 
 namespace App;
 
-
+Use App\Animal;
 
 class Guia {
 
-    protected $guia;
-    protected $conexion;
-        
-        public function guiaExiste($guia) {
+    protected $animal;
+
+    public function __construct(Animal $animal) {
+        return $this->animal = $animal;
+    }
+
+    public function guiaExiste($guia) {
 
 //     $data = $this->cliente->guiaXCodigoDGuia($guia);
 //      if ($data['resultado'] == 1) {
@@ -20,12 +23,15 @@ class Guia {
 //sacar el maximo id he imprimirlo en el campo boleta
 // }
 //strlen($this->formatGuia($request['guia'])
-      
-            $guia = $this->formatGuia($guia);
-        if ($guia != false) {
+
+        $guiaFormateada = $this->formatGuia($guia);
+
+        if ($guiaFormateada != false) {
+
             $data = array(
-                'guia' => $guia,
-                'boleta' => $this->ultimoAnimal());
+                'guia' => $guiaFormateada,
+                'boleta' => $this->animal->ultimoAnimal()//inyectar 
+            );
             return $data;
         } else {
             return 'Formato Invalido!';
@@ -33,8 +39,10 @@ class Guia {
     }
 
     public function formatGuia($guia) {
-//$request['cedula']
-        if (((strlen($guia)) < 14) or ( strlen($guia) > 14)) {
+        
+        $size = strlen($guia);
+
+        if (($size < 14) or ( $size > 14)) {
             return false;
         } else {
             $respuesta = substr_replace($guia, '-', 6, -7);

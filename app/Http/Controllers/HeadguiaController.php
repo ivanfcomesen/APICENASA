@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\EndPointsSENASA\Cliente;
-use App\SubastaBdConfig;
 use App\Productor;
 use App\Transportista;
 use App\Animal;
@@ -14,15 +13,13 @@ use Illuminate\Http\Request;
 class HeadguiaController extends Controller {
 
     protected $cliente;
-    protected $conexion;
     protected $productor;
     protected $transportista;
     protected $animal;
     protected $guia;
 
-    public function __construct(Cliente $cliente, SubastaBdConfig $conexion, Productor $productor, Transportista $transportista, Animal $animal, Guia $guia) {
+    public function __construct(Cliente $cliente, Productor $productor, Transportista $transportista, Animal $animal, Guia $guia) {
         $this->cliente = $cliente;
-        $this->conexion = $conexion;
         $this->productor = $productor;
         $this->transportista = $transportista;
         $this->animal = $animal;
@@ -53,39 +50,7 @@ class HeadguiaController extends Controller {
     }
 
     public function guiaExiste(Request $request) {
-
-//     $data = $this->cliente->guiaXCodigoDGuia($guia);
-//      if ($data['resultado'] == 1) {
-// $talonario = $request['guia'];
-//Pintar en el Campo Boleta el codigo de talonario 
-//   $talon = $this->maxId();
-//    $this->insert();
-//sacar el maximo id he imprimirlo en el campo boleta
-// }
-//strlen($this->formatGuia($request['guia'])
-        $guia = $this->formatGuia($request['guia']);
-        if ($guia != false) {
-            $data = array(
-                'guia' => $guia,
-                'boleta' => $this->ultimoAnimal());
-            return $data;
-        } else {
-            return 'Formato Invalido!';
-        }
-    }
-
-    public function formatGuia($guia) {
-//$request['cedula']
-        if (((strlen($guia)) < 14) or ( strlen($guia) > 14)) {
-            return false;
-        } else {
-            $respuesta = substr_replace($guia, '-', 6, -7);
-            return $respuesta;
-        }
-    }
-
-    public function getSubastaActual() {
-        return $this->conexion->cSubActual();
+        return $this->guia->guiaExiste($request['guia']);
     }
 
     public function formatoTransportista(Request $request) {
@@ -103,7 +68,7 @@ class HeadguiaController extends Controller {
     }
 
     public function getCantidadAnimales() {
-        return $this->animal->CantAnimales();
+        return $this->animal->CantidadAnimales();
     }
 
     public function getTipoAnimal() {
