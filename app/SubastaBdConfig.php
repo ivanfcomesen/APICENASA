@@ -57,7 +57,7 @@ class SubastaBdConfig {
         return $this->registra("INSERT INTO Conse_Boleta (Consecutivo)" . "VALUES('" . $this->maxId() . "')");
     }
 
-    public function ultAnimal() {
+    public function talonario() {
         $sql = "SELECT max(id) as topId from Conse_Boleta";
         $resultado = $this->conexion->selectOne($sql);
         $num = $resultado->topId + 1;

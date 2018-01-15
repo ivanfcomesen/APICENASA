@@ -1,25 +1,23 @@
 
 $(document).ready(function () {
     $('#numeroGuia').keypress(function (e) {
-        if (e.which == 13) {
+        if (e.which === 13) {
             e.preventDefault();
             $('#alertGuia').text('');
             var guia = $('#numeroGuia');
             //   if (validaFormatoGuia(guia) === true) {
             $.ajax({
-                url: 'talonario',
+                url: 'guiaExiste',
                 data: {guia: guia.val()},
                 type: "get",
                 //    dataType: "json",
                 success: function (result) {
-
                     if (result === 'Formato Invalido!') {
-                        $('#talonario').hide();
                         $('#alertGuia').show().text('Formato invalido.');
                         guia.val('').focus();
                     } else {
-                        $('#alertGuia').show().text('Nuevo numero de boleta.');
-                        $('#talonario').show().text(result.boleta);
+                      //  $('#alertGuia').show().text('Nueva Guia.');
+                        alert('Nueva Guia Creada.');
                         $('#numeroGuia').val(result.guia);
                         $('#codigoProductor').focus();
                     }
@@ -60,7 +58,6 @@ $(document).ready(function () {
         if (e.which == 13) {
 
             var codigoTransportista = $('#codigoTransportista');
-            //    if (validaFormatoTransportista(codigoTransportista) === true) {
             $.ajax({
                 url: 'formatoTransportista',
                 data: {codigoTransportista: codigoTransportista.val()},
@@ -80,11 +77,9 @@ $(document).ready(function () {
                         $('#placaTransportista').val("123-123456");
                         $('#cedulaTransportista').val("0123456789");
                     }
-                    //$('#numeroSubasta').text(result[0].subasta);
                 }
             });
         }
-        //  }
     });
     $('#agregarFila').click(function (e) {
         e.preventDefault();
@@ -166,24 +161,10 @@ function totalAnimales(numero) {
 
     if (numero === 1) {
         $('#toros').text(parseInt($('#toros').text()) + 1);
-    } else
-    if (numero === 2) {
-        $('#toretes').text(parseInt($('#toretes').text()) + 1);
-    } else
-    if (numero === 3) {
-        $('#terneros').text(parseInt($('#terneros').text()) + 1);
-    } else
-    if (numero === 4) {
-        $('#vacas').text(parseInt($('#vacas').text()) + 1);
-    } else
-    if (numero === 5) {
-        $('#vaquillas').text(parseInt($('#vaquillas').text()) + 1);
-    } else
-    if (numero === 6) {
-        $('#terneras').text(parseInt($('#terneras').text()) + 1);
     }
 }
 function tiposSenasa(numero) {
+   
     var tipo = 'indefinido';
     if (numero === 1) {
         tipo = "Toro";

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use GuzzleHttp\Client;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -23,9 +24,17 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        if ($this->app->environment() !== 'production') {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-        }
+        /* if ($this->app->environment() !== 'production') {
+          $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+          } */
+        $this->app->singleton('GuzzleHttp\Client', function() {
+            return new Client([
+                'base_uri' => 'http://test-tgrupal.addax.cc',
+                'timeout' => 40.0,
+                'Key' => 'S2V5IHRlbXBvcmFsIHBhcmEgc3ViYXN0YXMu',
+                'cookies' => true
+            ]);
+        });
     }
 
 }

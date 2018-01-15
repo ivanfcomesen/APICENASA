@@ -8,13 +8,8 @@ class Cliente {
 
     protected $cliente;
 
-    public function __construct() {
-
-        $this->cliente = new Client([
-            'base_uri' => 'http://test-tgrupal.addax.cc',
-            'timeout' => 5.0,
-            'Key' => 'S2V5IHRlbXBvcmFsIHBhcmEgc3ViYXN0YXMu',
-        ]);
+    public function __construct(Client $cliente) {
+        $this->cliente = $cliente;
     }
 
     public function remove_utf8_bom($text) {
@@ -30,26 +25,23 @@ class Cliente {
     }
 
     public function login() {
-
         $user = "rgonzales@hotmail.com";
         $pass = "rgonzales";
 
-        //return json_decode($login, true);
         return $this->getPeticion('/popupnocss.php?module=Users&func=loginfromcurlmd5&email='
                         . $user . '&password=' . $pass . '&app=subasta');
     }
 
     public function codeEstablishment() {
-
-        //return json_decode($codigo, true);
-        return $this->getPeticion('/zf_Trazabilidad/Popup/obtenercodigoestablecimientoautorizado/'
-                        . 'key/' . $this->cliente->getConfig()['Key']);
+        $data = $this->getPeticion('/zf_Trazabilidad/Popup/obtenercodigoestablecimientoautorizado/'
+                . 'key/' . $this->cliente->getConfig()['Key']);
+        return $data;
     }
 
     public function nameEstablishment($codigo) {
-
-        return $this->getPeticion('/zf_Trazabilidad/Popup/obtenernombreestablecimiento/establecimiento/'
-                        . $codigo['codigo'] . '/key/' . $this->cliente->getConfig()['Key']);
+        $data = $this->getPeticion('/zf_Trazabilidad/Popup/obtenernombreestablecimiento/establecimiento/'
+                        . $codigo . '/key/' . $this->cliente->getConfig()['Key']);
+        return $data;
     }
 
     public function stablishmentXCode($codigo) {
@@ -68,8 +60,7 @@ class Cliente {
                         '/key/' . $this->cliente->getConfig()['Key']);
     }
 
-    
-    public function verificaExiste($codigoGuia, $subasta) {
+    /*public function verificaExiste($codigoGuia, $subasta) {
         //No es necesario usar
         $stablishment = $this->codeEstablishment();
         $guia = $this->guiaXCodigoDGuia();
@@ -77,6 +68,18 @@ class Cliente {
         return $this->getPeticion('/zf_Trazabilidad/Popup/verificarexistenciadeguia/talonario/' . $guia['codigo_talonario'] .
                         '/guia/' . $codigoGuia . '/usuario/' . $stablishment['userid'] . '/subasta/' . $subasta .
                         '/key/' . $this->cliente->getConfig()['Key']);
+    }*/
+    
+        public function verificaExiste($talonario,$codigoGuia,$usuarioId, $subasta) {
+       //talonario del  frontal BD
+       //codigo de guia del frontal
+       //Usuario id = de la funcion obtener codigoEstablecimiento
+       //Subasta = de la funcion obtener codigoEstablecimiento
+
+        return $this->getPeticion('/zf_Trazabilidad/Popup/verificarexistenciadeguia/talonario/' . $talonario .
+                        '/guia/' . $codigoGuia . '/usuario/' . $usuarioId . '/subasta/' . $subasta .
+                        '/key/' . $this->cliente->getConfig()['Key']);
     }
+
 
 }

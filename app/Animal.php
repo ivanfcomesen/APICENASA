@@ -13,10 +13,6 @@ class Animal {
         return $this->conexion = $conexion;
     }
 
-    public function ultimoAnimal() {
-        return $this->conexion->ultAnimal();
-    }
-
     public function CantidadAnimales() {
         return $this->conexion->cCantAnimales();
     }

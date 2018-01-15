@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use App\EndPointsSENASA\Cliente;
 use App\Productor;
@@ -25,32 +24,42 @@ class HeadguiaController extends Controller {
         $this->animal = $animal;
         $this->guia = $guia;
     }
-
     public function index() {
-
-//  $login = $this->cliente->   ();
-//  if ($login['login_result'] == true) {         
-//  $data = $this->cliente->codeEstablishment();
-//  dd($data);
-//  $code = $data['codigo']; //NO HAY DATA VALOR DE CODIGO NULL.
-//  $name = $this->cliente->nameEstablishment($code);
-//  $nameSubasta = $name['nombre'];
-// $code = '119-008157'; //NO HAY DATA VALOR DE CODIGO NULL.
-
+        //Login en el ws del API si exito trae el codigo del establecimiento
+        //Jala colores y tipos de BD subasta
+        $login = $this->cliente->login();
         $cantAnimales = $this->getCantidadAnimales();
-        $data = array(
-            'code' => '119-008157',
-            'nameSubata' => 'SUBASTA CAMARA DE GANADEROS PZ',
-            'cantAnimales' => ($cantAnimales[0]['cantAnimales']),
-            'tablaColores' => $this->getColorAnimal(),
-            'tablaTipos' => $this->getTipoAnimal()
-        );
-        //return $data;
-        return view('posts.mainContainer')->with('data', $data);
+        if ($login['login_result'] == true) {
+            $codigoEstablecimiento = $this->cliente->codeEstablishment();
+            $code = $this->cliente->nameEstablishment($codigoEstablecimiento['codigo']);
+            $data = array(
+                'talonario' => $this->getTalonario(),
+                'code' => $codigoEstablecimiento['codigo'],
+                'nameSubata' => $code['nombre'],
+                'cantAnimales' => ($cantAnimales[0]['cantAnimales']),
+                'tablaColores' => $this->getColorAnimal(),
+                'tablaTipos' => $this->getTipoAnimal()
+            );
+            return view('posts.mainContainer')->with('data', $data);
+        }
     }
 
+    //capturo la info enla capa media y se la seteo a las clases;
     public function guiaExiste(Request $request) {
-        return $this->guia->guiaExiste($request['guia']);
+        $talonario = $this->getTalonario();
+        $codigoGuia = $this->guia->formatGuia($request['guia']);
+        if ($codigoGuia != false) {
+            $establecimiento = $this->cliente->codeEstablishment();
+            $data = $this->cliente->verificaExiste($talonario, $codigoGuia, $establecimiento['userid'], $establecimiento['codigo']);
+            if ($data['resultado'] == 0) {
+                $data = array(
+                    'guia' => $codigoGuia
+                );
+                return $data;
+            }
+        } else {
+            return 'Formato Invalido!';
+        }
     }
 
     public function formatoTransportista(Request $request) {
@@ -63,8 +72,8 @@ class HeadguiaController extends Controller {
         return $this->productor->formatProductor('cedula', $request['codigoProductor']);
     }
 
-    public function getUltimoAnimal() {
-        return $this->animal->ultimoAnimal();
+    public function getTalonario() {
+        return $this->guia->talonario();
     }
 
     public function getCantidadAnimales() {
@@ -78,5 +87,4 @@ class HeadguiaController extends Controller {
     public function getColorAnimal() {
         return $this->animal->ColorAnimal();
     }
-
 }
