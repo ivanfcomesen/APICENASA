@@ -27,21 +27,32 @@ class HeadguiaController extends Controller {
     public function index() {
         //Login en el ws del API si exito trae el codigo del establecimiento
         //Jala colores y tipos de BD subasta
-        $login = $this->cliente->login();
-        $cantAnimales = $this->getCantidadAnimales();
-        if ($login['login_result'] == true) {
-            $codigoEstablecimiento = $this->cliente->codeEstablishment();
-            $code = $this->cliente->nameEstablishment($codigoEstablecimiento['codigo']);
-            $data = array(
+        
+    //    $login = $this->cliente->login();
+    //    $cantAnimales = $this->getCantidadAnimales();
+   //     if ($login['login_result'] == true) {
+        //    $codigoEstablecimiento = $this->cliente->codeEstablishment();
+         //   $code = $this->cliente->nameEstablishment($codigoEstablecimiento['codigo']);
+         /*   $data = array(
                 'talonario' => $this->getTalonario(),
                 'code' => $codigoEstablecimiento['codigo'],
                 'nameSubata' => $code['nombre'],
                 'cantAnimales' => ($cantAnimales[0]['cantAnimales']),
                 'tablaColores' => $this->getColorAnimal(),
                 'tablaTipos' => $this->getTipoAnimal()
+            );*/
+            
+            $data = array(
+                'talonario' => $this->getTalonario(),
+                'code' => 'Modo test',
+                'nameSubata' => 'Modo test',
+                'cantAnimales' => 'Modo test',
+                'tablaColores' => $this->getColorAnimal(),
+                'tablaTipos' => $this->getTipoAnimal()
             );
+            
             return view('posts.mainContainer')->with('data', $data);
-        }
+      //  }
     }
 
     //capturo la info enla capa media y se la seteo a las clases;

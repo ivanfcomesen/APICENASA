@@ -14,38 +14,14 @@ class Guia {
 
     public function __construct(SubastaBdConfig $conexion) {
         $this->conexion = $conexion;
-
     }
 
-    public function guiaExiste($talonario,$codigoGuia,$usuarioId, $subasta) {
-
+    public function guiaExiste($talonario, $codigoGuia, $usuarioId, $subasta) {
         
-        
-        return $data;
-//      if ($data['resultado'] == 1) {
-// $talonario = $request['guia'];
-//Pintar en el Campo Boleta el codigo de talonario 
-//   $talon = $this->maxId();
-//    $this->insert();
-//sacar el maximo id he imprimirlo en el campo boleta
-// }
-//strlen($this->formatGuia($request['guia'])
-
-        /*   $guiaFormateada = $this->formatGuia($guia);
-          if ($guiaFormateada != false) {
-
-          $data = array(
-          'guia' => $guiaFormateada,
-          'boleta' => $this->animal->ultimoAnimal()//inyectar
-          );
-          return $data;
-          } else {
-          return 'Formato Invalido!';
-          } */
     }
-    
-        public function talonario() {
-           return $talonario = $this->conexion->talonario();        
+
+    public function talonario() {
+        return $talonario = $this->conexion->talonario();
     }
 
     public function formatGuia($guia) {
