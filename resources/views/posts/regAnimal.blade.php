@@ -38,7 +38,7 @@
 
     </div> 
     <div class="col-sm-3">        
-        <button id="agregarFila" type="button" class="btn btn-success" style="margin-bottom:5px;margin-left: 12px"><span class="glyphicon-arrow-down"></span></button>                
+        <button id="agregarFila" type="button" class="btn btn-success" style="margin-bottom:5px;margin-left: 12px"><span class="glyphicon glyphicon-arrow-down"></span></button>                
         <button id="quitarFila" type="button" class="btn btn-danger" style="margin-bottom:5px;margin-left: 12px" ><span></span></button>
     </div>          
     @include('posts.tabla') 
