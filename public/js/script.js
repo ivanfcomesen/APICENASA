@@ -16,7 +16,7 @@ $(document).ready(function () {
                         $('#alertGuia').show().text('Formato invalido.');
                         guia.val('').focus();
                     } else {
-                      //  $('#alertGuia').show().text('Nueva Guia.');
+                        //  $('#alertGuia').show().text('Nueva Guia.');
                         alert('Nueva Guia Creada.');
                         $('#numeroGuia').val(result.guia);
                         $('#codigoProductor').focus();
@@ -119,7 +119,7 @@ function guiaEmpty() {
 
 function insertaAnimal() {
 
-    if (($('#tipoSubasta').val() === '') || ($('#tipoSenasa').text() === ''))
+    if (($('#tipoSubasta').val() === '') || ($('#color').val() === ''))
     {
         alert("Debe digitar todos los codigos");
         $('#tipoSubasta').val('').focus();
@@ -164,7 +164,7 @@ function totalAnimales(numero) {
     }
 }
 function tiposSenasa(numero) {
-   
+
     var tipo = 'indefinido';
     if (numero === 1) {
         tipo = "Toro";

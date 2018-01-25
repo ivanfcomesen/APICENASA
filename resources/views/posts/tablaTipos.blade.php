@@ -3,7 +3,7 @@
 <table  id="tablaAnimales"  style="width: 100%;background-color: whitesmoke">
     <thead>                
         <tr style=>
-            <th class="active" colspan="2" style="background-color: palegoldenrod">Tipos de Animales</th>                    
+            <th class="active" colspan="2" style="background-color: powderblue">Tipos de Animales</th>                    
         </tr>
         <tr>                    
             <th>Codigo</th>
@@ -22,7 +22,7 @@
 <table id="tablaColores" style="width: 100%;background-color:whitesmoke " >
     <thead>                
         <tr>
-            <th colspan="2" style="background-color: palegoldenrod">Colores de Animales</th>                    
+            <th colspan="2" style="background-color:  powderblue">Colores de Animales</th>                    
         </tr>
         <tr>                    
             <th>Codigo</th>

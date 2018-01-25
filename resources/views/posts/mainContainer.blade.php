@@ -2,8 +2,7 @@
 @section('content')
 <div class="container col-md-12">
     <div class="col-md-5">               
-        @include('posts.headGuia') 
-        @include('posts.marcas')                     
+        @include('posts.headGuia')                  
         @include('posts.productor') 
         @include('posts.transportista')        
     </div>

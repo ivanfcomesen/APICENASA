@@ -1,11 +1,21 @@
-
-<div class="panel panel-primary" style="margin-bottom: 5px">
-    <div class="panel-heading col-sm-12" style="padding: 2px">
-             
-        @yield('encabezadoMarcas')
-                
-    </div>
+<div class="panel panel-default" style="margin-bottom: 5px">
+    <div class="panel-heading col-sm-12" style="padding: 2px;text-align: center;background-color: whitesmoke">             
+        <label>Marcas de Fierros</label>  
+    </div>    
     <div class="panel-body" style="padding: 4px">        
-        @yield('cuerpoMarcas')        
-    </div>  
+        <br><br>
+        <div class="col-sm-3">
+            <img src="images/marcas%20.jpg">
+        </div>
+        <div class="col-sm-3">
+            <img src="images/marcas%20.jpg">
+        </div>
+        <div class="col-sm-3">
+            <img src="images/marcas%20.jpg">    
+        </div>
+        <div class="col-sm-3">
+            <img src="images/marcas%20.jpg">
+        </div>
+    </div>
+     <br>
 </div>

@@ -19,8 +19,7 @@
             </div>
         </div>     
     </div>               
-    <div class="col-sm-4" >
-        
+    <div class="col-sm-4">        
         <div class="form-group" style="margin-bottom: 7px">
             <label for="ckCondicion" class="col-sm-6">Condicion:</label>                   
             <div class="col-sm-6"  style="text-align: center;">                                                                        
@@ -28,18 +27,20 @@
                 <input type="checkbox" name="ckCondicion" id="ckCondicion" class="form-control" style="height: 20px"> 
             </div>
         </div>
-
         <div class="form-group" style="margin-bottom: 7px">
             <label for="color" class="col-sm-3">Color:</label>
             <div class="col-sm-9"> 
                 <input type="text" name="color" id="color" class="form-control" placeholder="Color." > 
             </div>                   
         </div>
-
     </div> 
     <div class="col-sm-3">        
-        <button id="agregarFila" type="button" class="btn btn-success" style="margin-bottom:5px;margin-left: 12px"><span class="glyphicon glyphicon-arrow-down"></span></button>                
-        <button id="quitarFila" type="button" class="btn btn-danger" style="margin-bottom:5px;margin-left: 12px" ><span></span></button>
+        <button id="agregarFila" type="button" class="btn btn-primary" style="margin-bottom:5px;width: 80%">
+            <span class="glyphicon glyphicon-paste">Add</span>
+        </button>                
+        <button id="quitarFila" type="button" class="btn btn-primary" style="margin-bottom:5px;width: 80%" >
+            <span class="glyphicon glyphicon-trash">Remove</span>
+        </button>
     </div>          
     @include('posts.tabla') 
 </form> 
