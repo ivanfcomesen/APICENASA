@@ -128,10 +128,11 @@ function insertaAnimal() {
         var tipoSena = tiposSenasa(parseInt($('#tipoSubasta').val()));
         var nuevaFila = "";
         // añadimos las columnas
-        nuevaFila = "<tr><td style=width:100px; >" + (parseInt($('#numeroAnimal').text())) + "</td>"
-                + "<td style=width:140px;>" + $('#tipoSubasta').val() + "</td>"
-                + "<td style=width:140px;>" + tipoSena + "</td>"
-                + "<td style=width:100px;>" + $('#color').val() + "</td></tr>";
+        nuevaFila = "<tr><td style=width:15%; >" + (parseInt($('#numeroAnimal').text())) + "</td>"
+                + "<td style=width:25%;>" + $('#tipoSubasta').val() + "</td>"
+                + "<td style=width:20%;>" + tipoSena + "</td>"
+                + "<td style=width:15%;>" + $('#color').val() + "</td>"
+                + "<td style=width:15%;>" + $('#condicion').val() + "</td></tr>";;
 
         totalAnimales(parseInt($("#tipoSubasta").val()));
         $("#tablaAnimales").append(nuevaFila);

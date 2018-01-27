@@ -6,7 +6,7 @@
 @section('cuerpoProductor')
 <div class="panel-body"  style="padding: 4px">
     <form class="form-horizontal col-sm-8" style="padding-top: 5px">
-
+        
         <div class="form-group" style="margin-bottom: 7px">
             <label for="codigoProductor" class="col-sm-4" >Codigo:</label>
             <div class="col-sm-8">   
