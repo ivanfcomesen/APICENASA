@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/productor', 'HeadguiaController@index');
 
-Route::get('guiaExiste', 'HeadguiaController@guiaExiste');
+Route::get('ValidaColor', 'HeadguiaController@validaColor');
 
 Route::get('registroAnimal', 'HeadguiaController@registroAnimal');
 

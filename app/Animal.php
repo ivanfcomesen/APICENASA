@@ -30,15 +30,12 @@ class Animal {
         $descripcionColor = $this->validaColorSubasta($codigoColor);
         $nuevaFila = "";
 
-        if ($descripcionAnimal == "") {
-            $nuevaFila = "Codigo de Animal no existe";
-        }
-        if ($descripcionColor == "") {
-            $nuevaFila = "Codigo de color no existe";
-        }
+        if ($descripcionAnimal == "") 
+            {$nuevaFila = "Codigo de Animal no existe";}
+        if ($descripcionColor == "") 
+            {$nuevaFila = "Codigo de color no existe";}
 
         if (($descripcionAnimal != "") && ($descripcionColor != "")) {
-
             $nuevaFila = "<tr><td style=width:15%; >" + $numeroAnimal + "</td>"
                     + "<td style=width:25%;>" + $descripcionAnimal + "</td>"
                     + "<td style=width:20%;>" + 'tipoSena' + "</td>"
@@ -50,15 +47,13 @@ class Animal {
 
     public function validaTipoSubasta($codigoAnimal) {
 
-
-        $descripcionAnimal = "";
+        $descripcionAnimal = "No exite";
         $tipos = $this->conexion->tipoAnimal();
 
         foreach ($tipos as $nodo) {
-            if ($nodo['Codigo_Animal'] === $codigoAnimal) {
+            if ($nodo['Cod_Animal'] === $codigoAnimal) {
                 //si uno de los codigos coincide sacar la descripcion
-                // $banderaTipos = true;
-                $descripcionAnimal = $nodo['Descripcion_Animal'];
+                $descripcionAnimal = $nodo['Descripcion'];
             }
         }
         return $descripcionAnimal;
@@ -70,8 +65,8 @@ class Animal {
         $colores = $this->conexion->ColorAnimal();
 
         foreach ($colores as $nodo) {
-            if ($nodo['Color_Animal'] === $codigoAnimal) {
-                $descripcionColor = $nodo['Descripcion_Color'];
+            if ($nodo['Cod_Color'] === $codigoAnimal) {
+                $descripcionColor = $nodo['Descripcion'];
             }
         }
         return $descripcionColor;
