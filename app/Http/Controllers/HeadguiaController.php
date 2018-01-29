@@ -103,10 +103,9 @@ class HeadguiaController extends Controller {
     public function getColorAnimal() {
         return $this->animal->ColorAnimal();
     }
-    
-       public function validaColor() {
+
+    public function validaColor() {
         return $this->animal->validaColorSubasta("05");
     }
-
 
 }

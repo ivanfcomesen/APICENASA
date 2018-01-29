@@ -85,7 +85,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             url: 'registroAnimal',
-            data: {codigoColor: 20, codigoAnimal: 1, condicion: 0, numeroAnimal: 755},
+            data: {codigoColor: "05", codigoAnimal: "02", condicion: "0", numeroAnimal: "755"},
             type: "get",
             success: function (result) {
 

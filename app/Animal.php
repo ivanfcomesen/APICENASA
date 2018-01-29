@@ -36,11 +36,11 @@ class Animal {
             {$nuevaFila = "Codigo de color no existe";}
 
         if (($descripcionAnimal != "") && ($descripcionColor != "")) {
-            $nuevaFila = "<tr><td style=width:15%; >" + $numeroAnimal + "</td>"
-                    + "<td style=width:25%;>" + $descripcionAnimal + "</td>"
-                    + "<td style=width:20%;>" + 'tipoSena' + "</td>"
-                    + "<td style=width:15%;>" + $descripcionColor + "</td>"
-                    + "<td style=width:15%;>" + $condicion + "</td></tr>";
+            $nuevaFila = "<tr><td style=width:20%; >" . $numeroAnimal . "</td>"
+                    . "<td style=width:30%;>" . $descripcionAnimal . "</td>"
+                    . "<td style=width:25%;>" . 'tipoSena' . "</td>"
+                    . "<td style=width:20%;>" . $descripcionColor . "</td>"
+                    . "<td style=width:20%;>" . $condicion . "</td></tr>";
         }
         return $nuevaFila;
     }
