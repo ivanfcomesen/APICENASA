@@ -10,6 +10,7 @@
   | contains the "web" middleware group. Now create something great!
   |
  */
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,7 @@ Route::get('/productor', 'HeadguiaController@index');
 
 Route::get('guiaExiste', 'HeadguiaController@guiaExiste');
 
-Route::get('getTipoAnimal', 'HeadguiaController@getTipoAnimal');
+Route::get('registroAnimal', 'HeadguiaController@registroAnimal');
 
 Route::get('formato', 'HeadguiaController@formatGuia');
 

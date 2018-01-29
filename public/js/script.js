@@ -83,17 +83,37 @@ $(document).ready(function () {
     });
     $('#agregarFila').click(function (e) {
         e.preventDefault();
-        insertaAnimal();
-        $('#tablaAnimales').Tabledit({
-            url: false,
-            editButton: false,
-            deleteButton: false,
-            hideIdentifier: false,
-            columns: {
-                identifier: [0, 'animal'],
-                editable: [[3, 'color']]
+        $.ajax({
+            url: 'registroAnimal',
+            data: {codigoColor: 20, codigoAnimal: 1, condicion: 0, numeroAnimal: 755},
+            type: "get",
+            success: function (result) {
+
+                if (result === 'Codigo de Animal no existe') {
+                    alert('Codigo de Animal no existe');
+                } else
+                if (result === 'Codigo de color no existe') {
+                    alert('Codigo de color no existe');
+                } else {
+                    //   totalAnimales(parseInt($("#tipoSubasta").val()));
+                    $("#tablaAnimales").append(result);
+                    $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text()) + 1));
+                    $('#color').val('');
+                    $('#tipoSubasta').val('').focus();
+                }
             }
         });
+
+        /*   $('#tablaAnimales').Tabledit({
+         url: false,
+         editButton: false,
+         deleteButton: false,
+         hideIdentifier: false,
+         columns: {
+         identifier: [0, 'animal'],
+         editable: [[3, 'color']]
+         }
+         });*/
     });
     $('#tipoSubasta').change(function (e) {
         validaTipo($('#tipoSubasta'));
@@ -117,31 +137,30 @@ function guiaEmpty() {
     return flag;
 }
 
-function insertaAnimal() {
-
-    if (($('#tipoSubasta').val() === '') || ($('#color').val() === ''))
-    {
-        alert("Debe digitar todos los codigos");
-        $('#tipoSubasta').val('').focus();
-    } else {
-
-        var tipoSena = tiposSenasa(parseInt($('#tipoSubasta').val()));
-        var nuevaFila = "";
-        // añadimos las columnas
-        nuevaFila = "<tr><td style=width:15%; >" + (parseInt($('#numeroAnimal').text())) + "</td>"
-                + "<td style=width:25%;>" + $('#tipoSubasta').val() + "</td>"
-                + "<td style=width:20%;>" + tipoSena + "</td>"
-                + "<td style=width:15%;>" + $('#color').val() + "</td>"
-                + "<td style=width:15%;>" + $('#condicion').val() + "</td></tr>";;
-
-        totalAnimales(parseInt($("#tipoSubasta").val()));
-        $("#tablaAnimales").append(nuevaFila);
-        $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text()) + 1));
-        $('#tipoSenasa').val('');
-        $('#color').val('');
-        $('#tipoSubasta').val('').focus();
-    }
-}
+/*function insertaAnimal() {
+ if (($('#tipoSubasta').val() === '') || ($('#color').val() === ''))
+ {
+ alert("Debe digitar todos los codigos");
+ $('#tipoSubasta').val('').focus();
+ } else {
+ 
+ var tipoSena = tiposSenasa(parseInt($('#tipoSubasta').val()));
+ var nuevaFila = "";
+ // añadimos las columnas
+ nuevaFila = "<tr><td style=width:15%; >" + (parseInt($('#numeroAnimal').text())) + "</td>"
+ + "<td style=width:25%;>" + $('#tipoSubasta').val() + "</td>"
+ + "<td style=width:20%;>" + tipoSena + "</td>"
+ + "<td style=width:15%;>" + $('#color').val() + "</td>"
+ + "<td style=width:15%;>" + $('#condicion').val() + "</td></tr>";
+ 
+ totalAnimales(parseInt($("#tipoSubasta").val()));
+ $("#tablaAnimales").append(nuevaFila);
+ $('#numeroAnimal').text("0" + (parseInt($('#numeroAnimal').text()) + 1));
+ $('#tipoSenasa').val('');
+ $('#color').val('');
+ $('#tipoSubasta').val('').focus();
+ }
+ }*/
 function validaTipo(tipo) {
     var tipoSena = tiposSenasa(parseInt(tipo.val()));
 

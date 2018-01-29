@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\EndPointsSENASA\Cliente;
 use App\Productor;
@@ -24,35 +25,35 @@ class HeadguiaController extends Controller {
         $this->animal = $animal;
         $this->guia = $guia;
     }
+
     public function index() {
         //Login en el ws del API si exito trae el codigo del establecimiento
         //Jala colores y tipos de BD subasta
-        
-    //    $login = $this->cliente->login();
-    //    $cantAnimales = $this->getCantidadAnimales();
-   //     if ($login['login_result'] == true) {
+        //    $login = $this->cliente->login();
+        //    $cantAnimales = $this->getCantidadAnimales();
+        //     if ($login['login_result'] == true) {
         //    $codigoEstablecimiento = $this->cliente->codeEstablishment();
-         //   $code = $this->cliente->nameEstablishment($codigoEstablecimiento['codigo']);
-         /*   $data = array(
-                'talonario' => $this->getTalonario(),
-                'code' => $codigoEstablecimiento['codigo'],
-                'nameSubata' => $code['nombre'],
-                'cantAnimales' => ($cantAnimales[0]['cantAnimales']),
-                'tablaColores' => $this->getColorAnimal(),
-                'tablaTipos' => $this->getTipoAnimal()
-            );*/
-            
-            $data = array(
-                'talonario' => $this->getTalonario(),
-                'code' => 'Modo test',
-                'nameSubata' => 'Modo test',
-                'cantAnimales' => 'Modo test',
-                'tablaColores' => $this->getColorAnimal(),
-                'tablaTipos' => $this->getTipoAnimal()
-            );
-            
-            return view('posts.mainContainer')->with('data', $data);
-      //  }
+        //   $code = $this->cliente->nameEstablishment($codigoEstablecimiento['codigo']);
+        /*   $data = array(
+          'talonario' => $this->getTalonario(),
+          'code' => $codigoEstablecimiento['codigo'],
+          'nameSubata' => $code['nombre'],
+          'cantAnimales' => ($cantAnimales[0]['cantAnimales']),
+          'tablaColores' => $this->getColorAnimal(),
+          'tablaTipos' => $this->getTipoAnimal()
+          ); */
+
+        $data = array(
+            'talonario' => $this->getTalonario(),
+            'code' => 'Modo test',
+            'nameSubata' => 'Modo test',
+            'cantAnimales' => 'Modo test',
+            'tablaColores' => $this->getColorAnimal(),
+            'tablaTipos' => $this->getTipoAnimal()
+        );
+
+        return view('posts.mainContainer')->with('data', $data);
+        //  }
     }
 
     //capturo la info enla capa media y se la seteo a las clases;
@@ -83,6 +84,10 @@ class HeadguiaController extends Controller {
         return $this->productor->formatProductor('cedula', $request['codigoProductor']);
     }
 
+    public function registroAnimal(Request $request) {
+        return $this->animal->registroAnimal($request['codigoColor'], $request['codigoAnimal'], $request['condicion'], $request['numeroAnimal']);
+    }
+
     public function getTalonario() {
         return $this->guia->talonario();
     }
@@ -98,4 +103,5 @@ class HeadguiaController extends Controller {
     public function getColorAnimal() {
         return $this->animal->ColorAnimal();
     }
+
 }

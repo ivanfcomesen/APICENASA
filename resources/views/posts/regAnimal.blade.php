@@ -35,10 +35,10 @@
         </div>
     </div> 
     <div class="col-sm-3 text-center" >        
-        <button id="agregarFila" type="button" class="btn btn-primary" style="margin-bottom:5px;width: 90%">
+        <button id="agregarFila" type="button" class="btn btn-primary" style="margin-bottom:5px;width: 95%">
             <span class="glyphicon glyphicon-paste">Add</span>
         </button>                
-        <button id="quitarFila" type="button" class="btn btn-primary" style="margin-bottom:5px;width: 90%" >
+        <button id="quitarFila" type="button" class="btn btn-primary" style="margin-bottom:5px;width: 95%" >
             <span class="glyphicon glyphicon-trash">Remove</span>
         </button>
     </div>          
