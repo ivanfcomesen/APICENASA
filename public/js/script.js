@@ -85,12 +85,16 @@ $(document).ready(function () {
         e.preventDefault();
         var codigoColor = $('#color').val();
         var codigoAnimal = $('#tipoSubasta').val();
-        // var condicion = $('#').val();;
+        var condicion = "NO";
         var numeroAnimal = $('#numeroAnimal').text();
+        
+        if($('#ckCondicion').is(':checked')){
+            condicion ="SI";
+        }
 
         $.ajax({
             url: 'registroAnimal',
-            data: {codigoColor: codigoColor, codigoAnimal: codigoAnimal, condicion: "0", numeroAnimal: numeroAnimal},
+            data: {codigoColor: codigoColor, codigoAnimal: codigoAnimal, condicion: condicion, numeroAnimal: numeroAnimal},
             type: "get",
             success: function (result) {
 
