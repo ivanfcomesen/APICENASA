@@ -5,7 +5,7 @@ $(document).ready(function () {
             e.preventDefault();
             $('#alertGuia').text('');
             var guia = $('#numeroGuia');
-            //   if (validaFormatoGuia(guia) === true) {
+
             $.ajax({
                 url: 'guiaExiste',
                 data: {guia: guia.val()},
@@ -125,7 +125,6 @@ $(document).ready(function () {
          });*/
     });
     $('#quitarFila').click(function (e) {
-        //$('#tablaAnimales tr:last').remove();
         removeTableRow($('#tablaAnimales'));
     });
 });
@@ -146,29 +145,7 @@ function totalAnimales(numero) {
         $('#toros').text(parseInt($('#toros').text()) + 1);
     }
 }
-function tiposSenasa(numero) {
 
-    var tipo = 'indefinido';
-    if (numero === 1) {
-        tipo = "Toro";
-    } else
-    if (numero === 2) {
-        tipo = "Novillo";
-    } else
-    if (numero === 3) {
-        tipo = "Ternera";
-    } else
-    if (numero === 4) {
-        tipo = "Vaca";
-    } else
-    if (numero === 5) {
-        tipo = "Novilla";
-    } else
-    if (numero === 6) {
-        tipo = "Ternero";
-    }
-    return tipo;
-}
 function removeTableRow(jQtable) {
     jQtable.each(function () {
         if ($('tbody', this).length > 0) {

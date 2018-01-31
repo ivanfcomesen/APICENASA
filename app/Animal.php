@@ -29,20 +29,49 @@ class Animal {
         $descripcionAnimal = $this->validaTipoSubasta($codigoAnimal);
         $descripcionColor = $this->validaColorSubasta($codigoColor);
         $nuevaFila = "";
+        //$tipoSenasa;
 
-        if ($descripcionAnimal == "") 
-            {$nuevaFila = "Codigo de Animal no existe";}
-        if ($descripcionColor == "") 
-            {$nuevaFila = "Codigo de color no existe";}
+        if ($descripcionAnimal == "") {
+            $nuevaFila = "Codigo de Animal no existe";
+        }
+        if ($descripcionColor == "") {
+            $nuevaFila = "Codigo de color no existe";
+        }
 
         if (($descripcionAnimal != "") && ($descripcionColor != "")) {
+            $tipoSenasa = $this->tiposSenasa($descripcionAnimal);
+
             $nuevaFila = "<tr><td style=width:95px; >" . $numeroAnimal . "</td>"
                     . "<td style=width:155px;>" . $descripcionAnimal . "</td>"
-                    . "<td style=width:125px;>" . 'InProgress' . "</td>"
+                    . "<td style=width:125px;>" . $tipoSenasa . "</td>"
                     . "<td style=width:100px;>" . $descripcionColor . "</td>"
                     . "<td style=width:80px;>" . $condicion . "</td></tr>";
         }
         return $nuevaFila;
+    }
+
+    public function tiposSenasa($descripcionAnimal) {
+
+        $tipo = 'Indefinido';
+        if ($descripcionAnimal === 'TORO') {
+            $tipo = "Toro";
+        } else
+        if ($descripcionAnimal === 'TORETE') {
+            $tipo = "Novillo";
+        } else
+        if ($descripcionAnimal === 'TERNERA') {
+            $tipo = "Ternera";
+        } else
+        if ($descripcionAnimal === 'VACA') {
+            $tipo = "Vaca";
+        } else
+        if ($descripcionAnimal === 'VAQUILLA') {
+            $tipo = "Novilla";
+        } else
+        if ($descripcionAnimal === 'TERNERO') {
+            $tipo = "Ternero";
+        }
+        return $tipo;
     }
 
     public function validaTipoSubasta($codigoAnimal) {
