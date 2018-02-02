@@ -51,12 +51,11 @@ class HeadguiaController extends Controller {
             'tablaColores' => $this->getColorAnimal(),
             'tablaTipos' => $this->getTipoAnimal()
         );
-
+            //despues del login llama a main container
         return view('posts.mainContainer')->with('data', $data);
         //  }
     }
 
-    //capturo la info enla capa media y se la seteo a las clases;
     public function guiaExiste(Request $request) {
         $talonario = $this->getTalonario();
         $codigoGuia = $this->guia->formatGuia($request['guia']);
@@ -103,9 +102,4 @@ class HeadguiaController extends Controller {
     public function getColorAnimal() {
         return $this->animal->ColorAnimal();
     }
-
-    public function validaColor() {
-        return $this->animal->validaColorSubasta("05");
-    }
-
 }

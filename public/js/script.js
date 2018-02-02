@@ -5,7 +5,6 @@ $(document).ready(function () {
             e.preventDefault();
             $('#alertGuia').text('');
             var guia = $('#numeroGuia');
-
             $.ajax({
                 url: 'guiaExiste',
                 data: {guia: guia.val()},
@@ -24,18 +23,15 @@ $(document).ready(function () {
                 }
             });
         }
-        //   }
     });
     $('#codigoProductor').keypress(function (e) {
         if (e.which == 13) {
             var codigoProductor = $('#codigoProductor');
-
             $.ajax({
                 url: 'formatoProductor',
                 data: {codigoProductor: codigoProductor.val()},
                 type: "get",
                 success: function (result) {
-
                     if (result === 'Formato Invalido!') {
                         $('#numeroSubastaProductor').hide();
                         $('#numeroSubastaProductor').show().text('Error');
@@ -56,14 +52,12 @@ $(document).ready(function () {
     });
     $('#codigoTransportista').keypress(function (e) {
         if (e.which == 13) {
-
             var codigoTransportista = $('#codigoTransportista');
             $.ajax({
                 url: 'formatoTransportista',
                 data: {codigoTransportista: codigoTransportista.val()},
                 type: "get",
                 success: function (result) {
-
                     if (result === 'Formato Invalido!') {
                         $('#numeroSub').hide();
                         $('#numeroSub').show().text('Error.');
@@ -91,13 +85,11 @@ $(document).ready(function () {
         if($('#ckCondicion').is(':checked')){
             condicion ="SI";
         }
-
         $.ajax({
             url: 'registroAnimal',
             data: {codigoColor: codigoColor, codigoAnimal: codigoAnimal, condicion: condicion, numeroAnimal: numeroAnimal},
             type: "get",
             success: function (result) {
-
                 if (result === 'Codigo de Animal no existe') {
                     alert('Codigo de Animal no existe');
                 } else
@@ -112,17 +104,6 @@ $(document).ready(function () {
                 }
             }
         });
-
-        /*   $('#tablaAnimales').Tabledit({
-         url: false,
-         editButton: false,
-         deleteButton: false,
-         hideIdentifier: false,
-         columns: {
-         identifier: [0, 'animal'],
-         editable: [[3, 'color']]
-         }
-         });*/
     });
     $('#quitarFila').click(function (e) {
         removeTableRow($('#tablaAnimales'));
@@ -138,14 +119,11 @@ function guiaEmpty() {
     }
     return flag;
 }
-
 function totalAnimales(numero) {
-
     if (numero === 1) {
         $('#toros').text(parseInt($('#toros').text()) + 1);
     }
 }
-
 function removeTableRow(jQtable) {
     jQtable.each(function () {
         if ($('tbody', this).length > 0) {
@@ -156,6 +134,16 @@ function removeTableRow(jQtable) {
         }
     });
 }
+        /*   $('#tablaAnimales').Tabledit({
+         url: false,
+         editButton: false,
+         deleteButton: false,
+         hideIdentifier: false,
+         columns: {
+         identifier: [0, 'animal'],
+         editable: [[3, 'color']]
+         }
+         });*/
 
 
 

@@ -29,7 +29,6 @@ class Animal {
         $descripcionAnimal = $this->validaTipoSubasta($codigoAnimal);
         $descripcionColor = $this->validaColorSubasta($codigoColor);
         $nuevaFila = "";
-        //$tipoSenasa;
 
         if ($descripcionAnimal == "") {
             $nuevaFila = "Codigo de Animal no existe";

@@ -11,7 +11,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css" >
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
         <style>
 
         </style>
@@ -77,8 +77,6 @@
         </div>
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
-        @yield('script')
-        <script src="{{ asset('js/jquery.tabledit.js') }}"></script>
-        <script src="{{ asset('js/jquery.tabledit.min.js') }}"></script>        
+        @yield('script')      
     </body>
 </html>
