@@ -14,11 +14,8 @@
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
             <li class="header">Modulos Subasta</li>
-            <li><a href="#"><span>Link</span></a></li>
-            <li><a href="#"><span>Another Link</span></a></li>
-
-            
+            <li><a href="#"><span>Usuarios</span></a></li>
+            <li><a href="#"><span>Registro Animal</span></a></li>            
           </ul><!-- /.sidebar-menu -->
-
         </div><!-- /.sidebar -->
       </div><!-- /.main-sidebar -->

@@ -18,7 +18,6 @@
                 </div>
             </div>
         </div>
-
         <script src="{{ asset('js/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/adminlte.min.js') }}"></script>

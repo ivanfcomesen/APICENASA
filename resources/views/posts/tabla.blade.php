@@ -3,8 +3,8 @@
     <thead style="display: block;" >
         <tr class="active"  >
             <th style=" width:15%;">Animal</th>
-            <th style=" width:25%;">Tipo Subasta</th>  
-            <th style=" width:20%;"> Tipo SENASA</th>
+            <th style=" width:25%;">T. Subasta</th>  
+            <th style=" width:20%;"> T. SENASA</th>
             <th style=" width:15%;">Color</th>
             <th style=" width:15%;">Condicion</th>
         </tr>
@@ -20,4 +20,4 @@
 
     </tfoot>
 </table>     
-@include('posts.totales') 
+@include('partials.totales') 

@@ -11,18 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>01</td>
-            <td>Amarillo</td>
-        </tr>
-          <tr>
-            <td>02</td>
-            <td>Verde</td>
-        </tr>
-          <tr>
-            <td>03</td>
-            <td>Rojo</td>
-        </tr>
+
 
     </tbody>
 </table>    
