@@ -1,4 +1,4 @@
- <div class="main-sidebar">
+<div class="main-sidebar" style="width: 158px">
         <!-- Inner sidebar -->
         <div class="sidebar">
           <!-- user panel (Optional) -->

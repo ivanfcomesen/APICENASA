@@ -8,13 +8,13 @@
         <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.min.css')}}" >
         @yield('stylesheets')
     </head>
-    <body class="skin-blue" data-spy="scroll" data-target="#scrollspy">
-        <div class="wrapper">  
+    <body class="skin-blue" >
+        <div class="wrapper">              
             @include('partials.header')
             @include('partials.sidebar')  
             <div class="content-wrapper">            
-                <div class="content body">
-                    @yield('content')
+                <div class="content body" style="padding:5px">                    
+                    @yield('content')                    
                 </div>
             </div>
         </div>
