@@ -1,5 +1,11 @@
 
 $(document).ready(function () {
+
+    $('#btnToogle').click(function (e) {
+        e.preventDefault();
+        toggleClass('sidebar')
+    });
+
     $('#numeroGuia').keypress(function (e) {
         if (e.which === 13) {
             e.preventDefault();
@@ -81,9 +87,9 @@ $(document).ready(function () {
         var codigoAnimal = $('#tipoSubasta').val();
         var condicion = "NO";
         var numeroAnimal = $('#numeroAnimal').text();
-        
-        if($('#ckCondicion').is(':checked')){
-            condicion ="SI";
+
+        if ($('#ckCondicion').is(':checked')) {
+            condicion = "SI";
         }
         $.ajax({
             url: 'registroAnimal',
@@ -134,16 +140,16 @@ function removeTableRow(jQtable) {
         }
     });
 }
-        /*   $('#tablaAnimales').Tabledit({
-         url: false,
-         editButton: false,
-         deleteButton: false,
-         hideIdentifier: false,
-         columns: {
-         identifier: [0, 'animal'],
-         editable: [[3, 'color']]
-         }
-         });*/
+/*   $('#tablaAnimales').Tabledit({
+ url: false,
+ editButton: false,
+ deleteButton: false,
+ hideIdentifier: false,
+ columns: {
+ identifier: [0, 'animal'],
+ editable: [[3, 'color']]
+ }
+ });*/
 
 
 
