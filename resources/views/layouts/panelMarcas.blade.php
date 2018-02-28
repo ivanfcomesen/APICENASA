@@ -13,9 +13,5 @@
         <div class="col-sm-3">
             <img src="images/marcas%20.jpg"style =" border: 3px groove powderblue;">    
         </div>
-        <div class="col-sm-3">
-            <img src="images/marcas%20.jpg" style =" border: 3px groove powderblue;">
-        </div>
     </div>
-
 </div>

@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/getbairsdev', 'HeadguiaController@getbairsdev');
+
+
 Route::get('/productor', 'HeadguiaController@index');
 
 Route::get('guiaExiste', 'HeadguiaController@guiaExiste');

@@ -1,21 +1,22 @@
 <div class="main-sidebar" style="width: 158px">
-        <!-- Inner sidebar -->
-        <div class="sidebar">
-          <!-- user panel (Optional) -->
-          <div class="user-panel">
+    <!-- Inner sidebar -->
+    <div class="sidebar">
+        <!-- user panel (Optional) -->
+        <div class="user-panel">
             <div class="pull-left image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Ivan Sequeira</p>
+                <p>Ivan Sequeira</p>
             </div>
-          </div><!-- /.user-panel -->
+        </div><!-- /.user-panel -->
 
-          <!-- Sidebar Menu -->
-          <ul class="sidebar-menu">
+        <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
             <li class="header">Modulos Subasta</li>
             <li><a href="#"><span>Usuarios</span></a></li>
-            <li><a href="#"><span>Registro Animal</span></a></li>            
-          </ul><!-- /.sidebar-menu -->
-        </div><!-- /.sidebar -->
-      </div><!-- /.main-sidebar -->
+            <li><a href="#"><span>Registro de Animales</span></a></li>
+            <li><a href="#"><span>Salida de Animales</span></a></li>               
+        </ul><!-- /.sidebar-menu -->
+    </div><!-- /.sidebar -->
+</div><!-- /.main-sidebar -->
